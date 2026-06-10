@@ -45,26 +45,31 @@
             border: 2px solid #475569;
             padding: 28px;
             background: #1e2937;
+            display: flex;
+            flex-direction: column;
+        }
+        .box-content {
+            flex: 1;
         }
         h2 { color: #cbd5e1; margin-top: 0; font-size: 1.35rem; }
+        .download-btn {
+            display: inline-block;
+            background: #1e40af;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: auto;           /* This pushes button to bottom */
+            font-size: 1.05rem;
+        }
         .master-download {
             border: 2px solid #475569;
             background: #1e2937;
             padding: 35px;
             text-align: center;
             margin: 30px 0;
-        }
-        .download-btn {
-            display: inline-block;
-            background: #1e40af;
-            color: white;
-            padding: 18px 40px;
-            text-align: center;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 15px;
-            font-size: 1.1rem;
         }
         .support-box {
             border: 2px solid #475569;
@@ -84,18 +89,23 @@
         <h1>Stephens v. Texas</h1>
     </div>
 
-    <!-- Row 1 -->
+    <!-- Row 1 - Aligned Buttons -->
     <div class="row">
         <div class="box">
-            <h2>APPLICATION</h2>
-            <p>Practical framework for petitioners navigating emergency conditions through government systems while preserving the public record and pursuing lawful mitigation.<br><br>
-            <strong>Where to use this:</strong> Emergency filings, pro se litigation, public records requests, institutional accountability efforts, and AI-assisted procedural strategy.</p>
+            <div class="box-content">
+                <h2>APPLICATION</h2>
+                <p>Practical framework for petitioners navigating emergency conditions through government systems while preserving the public record and pursuing lawful mitigation.<br><br>
+                <strong>Where to use this:</strong> Emergency filings, pro se litigation, public records requests, institutional accountability efforts, and AI-assisted procedural strategy.</p>
+            </div>
             <a href="#" class="download-btn">📥 Download Application Guide</a>
         </div>
+        
         <div class="box">
-            <h2>Treatise</h2>
-            <p>The formal written work outlining the principles, protocols, and framework developed through this public record for emergency management, procedural accountability, and constitutional continuity.<br><br>
-            <strong>Stephens v Texas is designed to be used in concert with an AI.</strong> It was specifically written to accompany AI assistance in Default Legal Mode.</p>
+            <div class="box-content">
+                <h2>Treatise</h2>
+                <p>The formal written work outlining the principles, protocols, and framework developed through this public record for emergency management, procedural accountability, and constitutional continuity.<br><br>
+                <strong>Stephens v Texas is designed to be used in concert with an AI.</strong> It was specifically written to accompany AI assistance in Default Legal Mode.</p>
+            </div>
             <a href="#" class="download-btn">📥 Download Treatise</a>
         </div>
     </div>
