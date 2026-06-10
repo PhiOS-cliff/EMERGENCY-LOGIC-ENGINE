@@ -5,159 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stephens v. Texas</title>
     <style>
+        :root {
+            --bg: #0a0c14;
+            --card: #111827;
+            --box: #1e2937;
+            --accent: #3b82f6;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+        }
         body { 
-            font-family: system-ui, sans-serif; 
-            margin: 0; padding: 40px 20px; 
-            background: #0a0c14; 
-            color: #e2e8f0; 
-            line-height: 1.75;
+            font-family: 'Inter', system-ui, sans-serif; 
+            margin: 0; padding: 60px 20px; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6;
         }
         .paper {
-            max-width: 960px;
+            max-width: 800px;
             margin: 0 auto;
-            background: #111827;
-            border-radius: 16px;
-            padding: 70px 60px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.7);
         }
-        .title-box {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .title-box h1 {
-            margin: 0 0 12px 0;
-            color: #93c5fd;
-            font-size: 3.2rem;
-            letter-spacing: -1.5px;
-        }
-        .subtitle {
-            color: #94a3b8;
-            font-size: 1.3rem;
-            max-width: 680px;
-            margin: 0 auto 20px;
-        }
-        .mission {
-            color: #cbd5e1;
-            font-style: italic;
-            max-width: 620px;
-            margin: 0 auto 40px;
-            font-size: 1.2rem;
-        }
-        .framework {
-            text-align: center;
-            margin-bottom: 55px;
-            font-size: 1.15rem;
-            color: #94a3b8;
-        }
-        .framework span {
-            display: inline-block;
-            margin: 0 12px;
-        }
-        .row {
-            display: flex;
-            gap: 28px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        .box {
-            flex: 1;
-            min-width: 300px;
-            background: #1e2937;
+        .header { text-align: center; margin-bottom: 60px; }
+        .header h1 { color: var(--accent); font-size: 2.8rem; margin: 0 0 10px; }
+        .subtitle { font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
+        .mission { font-style: italic; color: var(--muted); font-size: 1.1rem; }
+        
+        .framework { margin-top: 30px; font-size: 0.9rem; color: var(--muted); letter-spacing: 0.05em; }
+        .framework span { color: var(--accent); margin: 0 10px; }
+
+        .master-box {
+            background: var(--card);
             border: 1px solid #334155;
-            border-radius: 12px;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .master-box h2 { color: var(--accent); margin-top: 0; }
+
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .box {
+            background: var(--card);
+            border: 1px solid #334155;
+            border-radius: 16px;
             padding: 32px;
             display: flex;
             flex-direction: column;
         }
-        .box-content { flex: 1; }
-        h2 { 
-            color: #93c5fd; 
-            margin: 0 0 18px 0; 
-            font-size: 1.45rem; 
-            text-align: center;
-        }
-        p { text-align: left; margin-bottom: 16px; }
-        .download-btn {
-            display: inline-block;
-            background: #1e40af;
+        .box h2 { font-size: 1.1rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        .btn {
+            display: block;
+            background: var(--accent);
             color: white;
-            padding: 16px 32px;
+            padding: 14px;
             text-align: center;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            margin-top: auto;
-            font-size: 1.05rem;
-            width: 100%;
+            margin-top: 20px;
+            transition: opacity 0.2s;
         }
-        .master-box {
-            background: #1e2937;
-            border: 2px solid #475569;
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            margin: 20px 0 45px;
-        }
-        .support-box {
-            text-align: center;
-        }
-        .support-btn {
-            display: inline-block;
-            background: #334155;
-            color: white;
-            padding: 16px 40px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
+        .btn:hover { opacity: 0.9; }
+        
+        .support-box { text-align: center; margin-top: 40px; }
+        .support-btn { color: var(--muted); text-decoration: none; font-size: 0.9rem; border: 1px solid #334155; padding: 10px 20px; border-radius: 6px; }
     </style>
 </head>
 <body>
 
 <div class="paper">
-
-    <div class="title-box">
+    <div class="header">
         <h1>Stephens v. Texas</h1>
         <p class="subtitle">A Treatise on Emergency Petitioning, Institutional Responsibility, and Mitigation</p>
         <p class="mission">The objective is not judgment. The objective is mitigation.</p>
-        
-        <div class="framework">
-            Condition <span>↓</span> Awareness <span>↓</span> Responsibility <span>↓</span> Mitigation
-        </div>
+        <div class="framework">Condition <span>↓</span> Awareness <span>↓</span> Responsibility <span>↓</span> Mitigation</div>
     </div>
 
     <div class="master-box">
         <h2>Master Record</h2>
-        <p>The complete source archive from which the Treatise and Petitioner’s Guide were derived.</p>
-        <p><strong>Designed as a procedural GPS.</strong> For maximum effectiveness, upload the State, District, and Circuit records together into a new AI session. They function as a unified navigation system.</p>
-        <a href="#" class="download-btn" style="background:#1e40af;">📥 Access Master Record</a>
+        <p>The complete source archive. <strong>For maximum effectiveness, upload these records into an AI session to activate the navigation framework.</strong></p>
+        <a href="#" class="btn">Access Master Record</a>
     </div>
 
     <div class="row">
         <div class="box">
-            <div class="box-content">
-                <h2>PETITIONER'S GUIDE</h2>
-                <p>A practical framework for navigating emergency conditions through government systems while preserving the public record and pursuing lawful mitigation.</p>
-                <p><strong>Use this for:</strong> emergency filings, pro se litigation, public records requests, and institutional accountability.</p>
-            </div>
-            <a href="#" class="download-btn">📥 Read Petitioner's Guide</a>
+            <h2>Petitioner's Guide</h2>
+            <p>A practical framework for navigating emergency systems and preserving the public record.</p>
+            <a href="#" class="btn">Read Guide</a>
         </div>
-        
         <div class="box">
-            <div class="box-content">
-                <h2>TREATISE</h2>
-                <p>The formal work outlining the principles, protocols, and framework for emergency management, procedural accountability, and constitutional continuity.</p>
-                <p><strong>Designed as a procedural GPS.</strong> Use in concert with an AI for maximum clarity and strategic insight.</p>
-            </div>
-            <a href="#" class="download-btn">📥 Read Treatise</a>
+            <h2>Treatise</h2>
+            <p>The formal principles and protocols for emergency management and procedural continuity.</p>
+            <a href="#" class="btn">Read Treatise</a>
         </div>
     </div>
 
     <div class="support-box">
-        <a href="contact-contribute.html" class="support-btn">Contact | Contribute</a>
+        <a href="#" class="support-btn">Contact | Contribute</a>
     </div>
-
 </div>
 
 </body>
