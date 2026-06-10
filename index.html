@@ -19,32 +19,32 @@
         
         .header { text-align: center; margin-bottom: 50px; }
         .header h1 { color: var(--accent); font-size: 3.5rem; margin: 0 0 10px; letter-spacing: -2px; }
-        .subtitle { font-size: 1.25rem; color: var(--text); margin-bottom: 15px; }
-        .methodology { 
-            font-size: 1rem; color: var(--muted); max-width: 750px; margin: 0 auto; 
-            padding: 25px; border-top: 1px solid var(--silver-dark); border-bottom: 1px solid var(--silver-dark);
-        }
-
-        .core-section { margin-bottom: 50px; }
-        .core-label { text-align: center; color: var(--silver); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 20px; }
+        .subtitle { font-size: 1.25rem; color: var(--text); margin-bottom: 25px; }
+        
+        .core-section { margin-bottom: 40px; }
+        .core-label { text-align: center; color: var(--silver); text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; margin-bottom: 25px; }
+        
         .flow-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .box { background: var(--card); border: 1px solid var(--silver-dark); border-radius: 12px; padding: 25px; }
-        .box h2 { font-size: 0.85rem; color: var(--silver); text-transform: uppercase; margin-top: 0; letter-spacing: 0.1em; }
-        .box p { font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; }
+        .box { background: var(--card); border: 1px solid var(--silver-dark); border-radius: 12px; padding: 30px; display: flex; flex-direction: column; }
+        .box h2 { font-size: 0.8rem; color: var(--silver); text-transform: uppercase; margin-top: 0; letter-spacing: 0.15em; text-align: center; margin-bottom: 20px; }
         
-        .btn { display: block; background: var(--accent); border: 1px solid #60a5fa; color: white; padding: 12px; text-align: center; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; }
-        .btn small { display: block; font-weight: normal; opacity: 0.9; font-size: 0.75rem; margin-top: 4px; color: #dbeafe; }
+        .btn { 
+            display: block; background: var(--accent); border: 1px solid #60a5fa; color: white; padding: 18px 12px; text-align: center; border-radius: 6px; 
+            text-decoration: none; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; margin-top: auto;
+        }
+        .btn small { display: block; font-weight: normal; opacity: 0.8; font-size: 0.7rem; margin-top: 6px; color: #dbeafe; }
         
+        .instruction { text-align: center; font-size: 1.1rem; color: var(--text); margin: 40px 0; padding: 0 20px; font-weight: 500; }
+        .instruction strong { color: var(--silver); }
+
         .outcome-bar { 
             border-top: 1px solid var(--silver-dark); border-bottom: 1px solid var(--silver-dark); 
-            padding: 30px 0; margin: 20px 0 20px; text-align: center; letter-spacing: 0.15em; font-size: 1rem; color: var(--text);
+            padding: 30px 0; margin: 20px 0 30px; text-align: center; letter-spacing: 0.2em; font-size: 1rem; color: var(--text);
         }
         .outcome-bar span { color: var(--accent); margin: 0 15px; font-weight: bold; }
         
-        .mission-bottom { 
-            text-align: center; font-style: italic; color: var(--silver); margin-bottom: 40px; font-size: 1.1rem; 
-        }
-
+        .mission-bottom { text-align: center; font-style: italic; color: var(--silver); margin-bottom: 40px; font-size: 1.1rem; }
+        
         .footer { text-align: center; color: var(--silver); padding-top: 20px; border-top: 1px solid var(--silver-dark); }
         .footer a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 0.9rem; }
     </style>
@@ -55,12 +55,6 @@
     <div class="header">
         <h1>Stephens v. Texas</h1>
         <p class="subtitle">A Treatise on Emergency Petitioning, Institutional Responsibility, and Mitigation</p>
-        <p class="methodology">
-            <strong>How to use this:</strong> Developed from an active public record, this framework functions as a procedural GPS. 
-            Download the core components, upload them to an AI session, and apply the facts of your condition to identify responsibilities. 
-            By maintaining this framework, you preserve an auditable record that allows a matter to be tracked from local government 
-            through state and federal review, ensuring institutional continuity as a condition moves through the system.
-        </p>
     </div>
 
     <div class="core-section">
@@ -68,21 +62,22 @@
         <div class="flow-container">
             <div class="box">
                 <h2>Master Record</h2>
-                <p>The complete source archive. The foundation from which the entire framework is derived.</p>
-                <a href="#" class="btn">Download PDF<small>PDF • 0.0 MB</small></a>
+                <a href="#" class="btn">DOWNLOAD MASTER RECORD<small>PDF • 28 MB</small></a>
             </div>
             <div class="box">
                 <h2>Treatise</h2>
-                <p>The theory and principles. Explains how conditions move through institutions.</p>
-                <a href="#" class="btn">Download PDF<small>PDF • 0.0 MB</small></a>
+                <a href="#" class="btn">DOWNLOAD TREATISE<small>PDF • 14 MB</small></a>
             </div>
             <div class="box">
                 <h2>Petitioner's Guide</h2>
-                <p>The practical application. Navigate emergency conditions and preserve the public record.</p>
-                <a href="#" class="btn">Download PDF<small>PDF • 0.0 MB</small></a>
+                <a href="#" class="btn">DOWNLOAD GUIDE<small>PDF • 8 MB</small></a>
             </div>
         </div>
     </div>
+
+    <p class="instruction">
+        <strong>PROCEDURAL CORE:</strong> Download the components above. Upload them together into an AI session to map your matter from local institutions through state and federal review.
+    </p>
 
     <div class="outcome-bar">
         RECEIVED <span>→</span> ACKNOWLEDGED <span>→</span> RECOGNIZED <span>→</span> MITIGATED
