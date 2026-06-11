@@ -10,33 +10,55 @@
             --card: #111827;
             --accent: #3b82f6;
             --silver: #9ca3af;
-            --silver-dark: #334155;
+            --silver-dark: #6b7280;
             --text: #e2e8f0;
             --muted: #94a3b8;
         }
         body { font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 60px 20px; background: var(--bg); color: var(--text); line-height: 1.6; }
-        .paper { max-width: 750px; margin: 0 auto; }
+        .paper { max-width: 900px; margin: 0 auto; }
         
-        /* Typography System */
-        .core-label { text-align: center; color: var(--silver); text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; margin: 50px 0 25px; }
-        h1 { color: var(--accent); font-size: 3rem; margin: 0 0 10px; letter-spacing: -2px; text-align: center; }
-        .subtitle { font-size: 1.25rem; text-align: center; margin-bottom: 30px; }
-        .methodology { font-size: 1rem; color: var(--muted); padding: 25px; border-top: 1px solid var(--silver-dark); border-bottom: 1px solid var(--silver-dark); }
+        .header { text-align: center; margin-bottom: 50px; }
+        .header h1 { color: var(--accent); font-size: 3.5rem; margin: 0 0 10px; letter-spacing: -2px; }
+        .subtitle { font-size: 1.25rem; color: var(--text); margin-bottom: 30px; }
+        
+        .methodology { 
+            font-size: 1rem; color: var(--muted); max-width: 750px; margin: 0 auto 30px; 
+            padding: 25px; border-top: 1px solid var(--silver-dark); border-bottom: 1px solid var(--silver-dark);
+        }
 
-        /* Card System */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .card { background: var(--card); border: 1px solid var(--silver-dark); padding: 25px; border-radius: 12px; text-align: center; }
-        .card h2 { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 10px; }
-        .card p { font-size: 0.85rem; color: var(--muted); margin: 0; }
-        .btn { display: inline-block; margin-top: 15px; background: transparent; border: 1px solid var(--silver-dark); color: var(--silver); padding: 8px 16px; border-radius: 6px; font-size: 0.7rem; text-decoration: none; }
+        .core-section { margin-bottom: 50px; }
+        .core-label { text-align: center; color: var(--silver); text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; margin-bottom: 25px; }
+        
+        .flow-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 50px; }
+        .box { background: var(--card); border: 1px solid var(--silver-dark); border-radius: 12px; padding: 25px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Hierarchy Shift: Titles are larger, buttons are secondary */
+        .box h2 { font-size: 1.1rem; color: var(--text); margin-top: 0; margin-bottom: 15px; letter-spacing: 0.05em; font-weight: 600; }
+        .btn { 
+            display: inline-block; background: transparent; border: 1px solid var(--silver-dark); color: var(--silver); 
+            padding: 10px 20px; text-align: center; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 0.75rem; transition: all 0.2s;
+        }
+        .btn:hover { border-color: var(--accent); color: var(--accent); }
+        
+        .apps-section { margin-bottom: 50px; }
+        .apps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .app-card { background: #0f172a; border: 1px solid #334155; padding: 25px; border-radius: 12px; text-align: center; }
+        .app-card h3 { color: var(--accent); font-size: 0.9rem; margin-top: 0; text-transform: uppercase; letter-spacing: 0.05em; }
+        .app-card p { font-size: 0.85rem; color: var(--muted); margin: 10px 0 0; }
 
-        /* Doctrine System */
-        .doctrine { border-top: 1px solid var(--silver-dark); border-bottom: 1px solid var(--silver-dark); padding: 25px 0; margin: 50px 0; text-align: center; letter-spacing: 0.3em; font-weight: 700; color: var(--text); }
-        .doctrine span { color: var(--accent); margin: 0 15px; }
+        .outcome-bar { 
+            border-top: 1px solid var(--silver-dark); border-bottom: 1px solid var(--silver-dark); 
+            padding: 30px 0; margin: 20px 0 30px; text-align: center; letter-spacing: 0.2em; font-size: 1rem; color: var(--text);
+        }
+        .outcome-bar span { color: var(--accent); margin: 0 15px; font-weight: bold; }
+        
+        .how-to-section { text-align: center; color: var(--text); max-width: 750px; margin: 0 auto 40px; }
+        .how-to-section h3 { color: var(--silver); margin-bottom: 20px; }
+        .how-to-section ul { padding: 0; list-style-type: none; color: var(--muted); }
+        .how-to-section li { margin-bottom: 10px; }
 
-        /* How-To System */
-        .step-label { color: var(--accent); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; }
-        .step-block { margin-bottom: 40px; }
+        .footer { text-align: center; color: var(--silver); padding-top: 20px; border-top: 1px solid var(--silver-dark); }
+        .footer a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -46,54 +68,70 @@
         <h1>Stephens v. Texas</h1>
         <p class="subtitle">A Treatise on Emergency Petitioning, Institutional Responsibility, and Mitigation</p>
         <p class="methodology">
-            The concepts presented here are not new. No new laws are created, and no new precedents are claimed. This work simply organizes existing systems, procedures, and records into a structure that can be understood and applied by petitioners, whistleblowers, journalists, auditors, and public officials.
+            The concepts presented here are not new. No new laws are created, and no new precedents are claimed. 
+            This work simply organizes existing systems, procedures, and records into a structure that can be 
+            understood and applied by petitioners, whistleblowers, journalists, auditors, and public officials. 
+            By downloading the core components and analyzing them together, users can identify responsibilities 
+            and preserve an auditable public record from local government through state and federal review.
         </p>
     </div>
 
-    <div class="core-label">Procedural Core</div>
-    <div class="grid">
-        <div class="card"><h2>Master Record</h2><p>The source archive and supporting record.</p><a href="#" class="btn">DOWNLOAD PDF</a></div>
-        <div class="card"><h2>Treatise</h2><p>The theory, principles, and methodology.</p><a href="#" class="btn">DOWNLOAD PDF</a></div>
-        <div class="card" style="grid-column: span 2;"><h2>Petitioner's Guide</h2><p>The practical application of the framework.</p><a href="#" class="btn">DOWNLOAD PDF</a></div>
-    </div>
-
-    <div class="core-label">Applications</div>
-    <div class="grid">
-        <div class="card"><h2>Institutional Paralysis</h2><p>When multiple agencies ignore responsibility. We reveal where awareness existed and where it failed.</p></div>
-        <div class="card"><h2>Government Whistleblowing</h2><p>Navigate institutional resistance while preserving an auditable public record of your disclosure.</p></div>
-        <div class="card"><h2>Public Safety Emergency</h2><p>Converts raw concern into a documented condition with clear responsible parties and action items.</p></div>
-        <div class="card"><h2>Regulatory Capture</h2><p>Exposes where responsibility was compromised and builds the record needed to break the cycle.</p></div>
-        <div class="card"><h2>Crisis Denial</h2><p>Documents every point of delay and creates an auditable chain of accountability.</p></div>
-        <div class="card"><h2>Silenced Citizen</h2><p>Turns gaslighting and bureaucratic runaround into a permanent, defensible public record.</p></div>
-    </div>
-
-    <div class="doctrine">
-        RECEIVED <span>•</span> ACKNOWLEDGED <span>•</span> RECOGNIZED <span>•</span> MITIGATED
-    </div>
-
-    <div class="core-label">How to Use This</div>
-    
-    <div class="step-block">
-        <div class="step-label">Components</div>
-        <p>Download the Master Record, Treatise, and Petitioner's Guide.</p>
-    </div>
-
-    <div class="step-block">
-        <div class="step-label">Procedure</div>
-        <p>Upload all three documents into a new AI session. Individually, each component is useful. Together, they function as a complete procedural GPS.</p>
-    </div>
-
-    <div class="step-block">
-        <div class="step-label">Output</div>
-        <p>The system organizes your condition to highlight:</p>
-        <div class="grid" style="margin-top: 20px;">
-            <div class="card"><h2>Missing Communications</h2></div>
-            <div class="card"><h2>Unanswered Notifications</h2></div>
-            <div class="card"><h2>Responsible Institutions</h2></div>
-            <div class="card"><h2>Escalation Pathways</h2></div>
+    <div class="core-section">
+        <div class="core-label">Procedural Core: Analyze Components Together</div>
+        <div class="flow-container">
+            <div class="box">
+                <h2>MASTER RECORD</h2>
+                <a href="#" class="btn">DOWNLOAD PDF</a>
+            </div>
+            <div class="box">
+                <h2>TREATISE</h2>
+                <a href="#" class="btn">DOWNLOAD PDF</a>
+            </div>
+            <div class="box">
+                <h2>PETITIONER'S GUIDE</h2>
+                <a href="#" class="btn">DOWNLOAD PDF</a>
+            </div>
         </div>
     </div>
 
+    <div class="apps-section">
+        <div class="core-label">Applications of the Framework</div>
+        <div class="apps-grid">
+            <div class="app-card"><h3>Institutional Paralysis</h3><p>When multiple agencies know of a condition but none claim responsibility. The framework reveals exactly where awareness existed, where acknowledgement failed, and where responsibility disappeared.</p></div>
+            <div class="app-card"><h3>Government Whistleblowing</h3><p>When an insider discovers a condition being ignored or mishandled. The framework provides a structured method to preserve an auditable record while navigating institutional resistance.</p></div>
+            <div class="app-card"><h3>Public Safety Emergency</h3><p>When community facilities expose people to preventable harm. The framework converts raw concern into a documented condition with clear responsible parties and action items.</p></div>
+            <div class="app-card"><h3>Corporate or Regulatory Capture</h3><p>When industries influence the agencies meant to regulate them. The framework exposes where responsibility was compromised and builds the record needed to break the cycle.</p></div>
+            <div class="app-card"><h3>Crisis Denial & Delayed Response</h3><p>When leaders prioritize politics over immediate action. The framework documents every point of delay and creates an auditable chain of accountability.</p></div>
+            <div class="app-card"><h3>The Silenced Citizen</h3><p>When ordinary people face gaslighting or bureaucratic runaround. The framework turns ignored voices into a permanent, defensible public record.</p></div>
+        </div>
+    </div>
+
+    <div class="outcome-bar">
+        RECEIVED <span>→</span> ACKNOWLEDGED <span>→</span> RECOGNIZED <span>→</span> MITIGATED
+    </div>
+    
+    <div class="how-to-section">
+        <h3>How to Use This</h3>
+        <p>Stephens v. Texas is a unified framework. Download the Master Record, Treatise, and Petitioner's Guide, then upload all three into a new AI session. Each component serves a different purpose:</p>
+        <ul>
+            <li><strong>Master Record</strong>: the source archive</li>
+            <li><strong>Treatise</strong>: the theory and methodology</li>
+            <li><strong>Petitioner's Guide</strong>: the practical application</li>
+        </ul>
+        <p>Individually, each component is useful. Together, they function as a complete procedural GPS. The AI will use the full framework to:</p>
+        <ul>
+            <li>Map the trajectory of a condition through local, state, and federal institutions</li>
+            <li>Identify exactly where awareness, acknowledgement, and recognition stalled or failed</li>
+            <li>Preserve an auditable public record</li>
+            <li>Organize communications and action items</li>
+            <li>Reveal pathways toward mitigation</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>Support the preservation and continued development of this public archive.</p>
+        <a href="#">Contact</a> | <a href="#">Contribute</a>
+    </div>
 </div>
 
 </body>
