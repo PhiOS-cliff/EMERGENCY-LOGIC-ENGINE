@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procedural Kernel</title>
+    <title>Procedural Kernel OS</title>
     <style>
         :root {
             --bg: #0a0c14;
@@ -51,6 +51,15 @@
             border-top: 1px solid var(--silver-dark); 
             border-bottom: 1px solid var(--silver-dark);
             text-align: center;
+        }
+
+        .demo-box {
+            background: #0f172a;
+            border: 2px dashed var(--accent);
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
         }
 
         .core-section { margin-bottom: 60px; }
@@ -106,15 +115,6 @@
             color: var(--accent); 
         }
        
-        .demo-box {
-            background: #0f172a;
-            border: 2px dashed var(--accent);
-            padding: 32px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px 0;
-        }
-
         .apps-section { margin-bottom: 60px; }
         .apps-grid { 
             display: grid; 
@@ -138,6 +138,14 @@
             font-size: 0.9rem; 
             color: var(--muted); 
             margin: 12px 0 0; 
+        }
+
+        .why-section {
+            background: var(--card);
+            border: 1px solid var(--silver-dark);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 40px 0;
         }
 
         .outcome-bar {
@@ -184,85 +192,94 @@
 <body>
 <div class="paper">
     <div class="header">
-        <h1>PROCEDURAL KERNEL</h1>
-        <p class="subtitle">A condition-classification engine derived from emergency management logic.</p>
+        <h1>PROCEDURAL KERNEL OS</h1>
+        <p class="subtitle">An operating system for AI reasoning. Built from emergency-management logic.</p>
         <p class="methodology">
-            Describe a stalled condition. The Kernel identifies the unresolved pivot point and returns 
-            the smallest verifiable step required to move the matter forward. 
-            It does not assign blame, predict outcomes, or render judgments — it isolates the procedural minimum.
+            Most AI systems answer questions. The Kernel identifies constraints.<br>
+            Input a stalled condition. The Kernel isolates the unresolved node and returns the procedural minimum required to restore movement.
         </p>
     </div>
 
     <div class="demo-box">
-        <h2 style="color: var(--accent); margin-top: 0;">Test the Kernel</h2>
-        <p style="color: var(--muted); max-width: 600px; margin: 0 auto 20px;">
-            Paste a brief description of any stalled condition (permit, dispute, investigation, institutional failure, etc.)
+        <h2 style="color: var(--accent); margin-top: 0;">Input a Stalled Condition</h2>
+        <p style="color: var(--muted); max-width: 620px; margin: 0 auto 20px;">
+            Describe any complex problem (permit delay, institutional failure, operational bottleneck, investigation, dispute, etc.)
         </p>
-        <textarea style="width: 100%; max-width: 620px; height: 110px; background: #1e2937; border: 1px solid var(--silver-dark); color: var(--text); padding: 12px; border-radius: 8px; resize: vertical;" placeholder="Example: Engineering report shows imminent structural failure at public building. Civil emergency declaration filed months ago with no response or mitigation..."></textarea>
+        <textarea style="width: 100%; max-width: 620px; height: 120px; background: #1e2937; border: 1px solid var(--silver-dark); color: var(--text); padding: 12px; border-radius: 8px; resize: vertical;" placeholder="Example: Engineering report documents imminent structural hazard. Civil emergency declaration filed with no intake acknowledgment or mitigation after months..."></textarea>
         <br><br>
-        <a href="#" class="btn" style="background: var(--accent); color: white; border: none;">Analyze with Kernel</a>
+        <a href="#" class="btn" style="background: var(--accent); color: white; border: none;">Run Kernel Analysis</a>
     </div>
 
     <div class="core-section">
-        <div class="core-label">How the Kernel Works</div>
+        <div class="core-label">Kernel Execution Cycle</div>
         <div class="flow-container">
             <div class="box">
-                <h2>1. DESCRIBE CONDITION</h2>
-                <p style="color: var(--muted); text-align: center; margin-bottom: 20px;">Provide the facts of the stalled situation.</p>
+                <h2>1. CONDITION</h2>
+                <p style="color: var(--muted);">Define the stalled system state.</p>
             </div>
             <div class="box">
-                <h2>2. CLASSIFY &amp; MAP</h2>
-                <p style="color: var(--muted); text-align: center; margin-bottom: 20px;">Identifies unresolved conditions, custodianship gaps, dependencies, and bottlenecks.</p>
+                <h2>2. NODE ISOLATION</h2>
+                <p style="color: var(--muted);">Map dependencies, custodianship, and unresolved nodes.</p>
             </div>
             <div class="box">
                 <h2>3. PROCEDURAL MINIMUM</h2>
-                <p style="color: var(--muted); text-align: center; margin-bottom: 20px;">Returns the smallest verifiable next step to restore movement.</p>
+                <p style="color: var(--muted);">Return the smallest verifiable action to advance.</p>
             </div>
         </div>
     </div>
 
+    <div class="why-section">
+        <h2 style="text-align: center; color: var(--accent);">Why the Kernel is Different</h2>
+        <ul style="color: var(--muted); max-width: 700px; margin: 20px auto; padding-left: 20px;">
+            <li>The Kernel is not a chatbot or consultant. It is an operating layer that imposes emergency-management reasoning on any AI model.</li>
+            <li>It does not generate opinions or summaries. It traces dependency chains until it finds the silent node preventing advancement.</li>
+            <li>Most tools answer "What should I do?" The Kernel answers "What condition must be resolved first?"</li>
+        </ul>
+    </div>
+
     <div class="apps-section">
-        <div class="core-label">Who Uses the Kernel</div>
+        <div class="core-label">Operational Impact</div>
         <div class="apps-grid">
             <div class="app-card">
                 <h3>Petitioners &amp; Citizens</h3>
-                <p>Turn general complaints into precise procedural questions. Example: From months of non-response on a public safety hazard to the exact notice or record that forces acknowledgment.</p>
+                <p>Converts vague frustration into the precise procedural question that forces acknowledgment or record creation.</p>
             </div>
             <div class="app-card">
                 <h3>Judges &amp; Administrators</h3>
-                <p>Cut through competing narratives. Identify evidentiary imbalances, verification needs, or jurisdictional duties without deciding the merits.</p>
+                <p>Cuts through narratives to surface evidentiary imbalances and custodianship failures.</p>
             </div>
             <div class="app-card">
                 <h3>Journalists &amp; Investigators</h3>
-                <p>Separate allegations from verifiable conditions. Pinpoint the first discrepancy that must be documented.</p>
+                <p>Isolates the first verifiable discrepancy before narrative forms.</p>
             </div>
             <div class="app-card">
                 <h3>Executives &amp; Managers</h3>
-                <p>Locate operational constraints in hospitals, corporations, universities, or agencies. Reveal whether the real bottleneck is staffing, process, or information.</p>
+                <p>Reveals whether the real constraint is information, authority, or process in complex operations.</p>
             </div>
         </div>
     </div>
 
     <div class="outcome-bar">
-        CONDITION <span>→</span> CLASSIFICATION <span>→</span> PROCEDURAL MINIMUM <span>→</span> ADVANCEMENT
+        CONDITION <span>→</span> NODE ISOLATION <span>→</span> PROCEDURAL MINIMUM <span>→</span> SYSTEM ADVANCEMENT
     </div>
 
     <div class="how-to-section">
-        <h3>Origin &amp; Purpose</h3>
-        <p>The Procedural Kernel was forged in the sustained institutional record of <strong>Stephens v. Texas</strong> (Travis County Cause No. D-1-GN-25-002397 and related proceedings). What began as analysis of emergency petitioning, courthouse continuity, and Chapter 418 intake failures evolved into a portable reasoning engine.</p>
-        <p>It applies emergency-management decision logic — identifying pivot points, custodianship failures, and procedural minimums — across any complex stalled system.</p>
+        <h3>The Three Pillars</h3>
+        <p><strong>Pillar I — Laboratory:</strong> Stephens v. Texas (real-world institutional stress test).<br>
+           <strong>Pillar II — Logic Layer:</strong> Formalized emergency-management reasoning.<br>
+           <strong>Pillar III — Kernel OS:</strong> Portable operating system that runs consistently across models.</p>
         
         <p style="margin-top: 30px; font-size: 0.95rem; color: var(--muted);">
-            <strong>Core Principle:</strong> Every problem has a pivot point. The Kernel isolates it and identifies the smallest verifiable step required to restore movement.
+            The case was the forge. The Kernel is the system.
         </p>
     </div>
 
     <div class="footer">
-        <p>Stephens v. Texas — Laboratory for the Procedural Kernel</p>
+        <p>Procedural Kernel OS — Node Isolation &amp; Advancement Engine</p>
         <a href="#">Core Documents</a> | 
-        <a href="#">Live Test Examples</a> | 
+        <a href="#">Live Tests</a> | 
         <a href="#">Kernel Prompts</a> | 
-        <a href="#">About &amp; Record</a>
+        <a href="#">Origin Record</a>
     </div>
 </div>
 </body>
