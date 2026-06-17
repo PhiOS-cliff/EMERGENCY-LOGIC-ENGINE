@@ -1,665 +1,376 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emergency Logic Engine | System Advancement</title>
+  <title>Version 11.2 | Human Cognitive Operating System</title>
+
   <style>
     :root {
-      --bg: #07111f;
-      --panel: #0d1b2e;
-      --panel-soft: #10243c;
-      --line: #24415f;
-      --text: #e8f1fb;
-      --headline: #dbe8f6;
-      --muted: #a9bbcc;
-      --dim: #7e93a8;
-      --blue: #2f80ed;
-      --blue-soft: rgba(47, 128, 237, 0.14);
-      --white: #ffffff;
-      --green: #2dd4bf;
-      --green-soft: rgba(45, 212, 191, 0.12);
+      --bg: #FAFAF8;
+      --card: #FFFFFF;
+      --text: #1E1E1E;
+      --muted: #6E7681;
+      --line: #E4E7EB;
+
+      --blue: #214E7A;
+      --teal: #2C7A7B;
+      --purple: #6B5FB5;
+      --amber: #A86A00;
+      --gray: #6E7681;
     }
 
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(47, 128, 237, 0.16), transparent 34rem),
-        radial-gradient(circle at 85% 20%, rgba(45, 212, 191, 0.07), transparent 28rem),
-        linear-gradient(180deg, #07111f 0%, #081522 100%);
+      font-family: Inter, IBM Plex Sans, Source Sans 3, Arial, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; }
-
-    .page {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
+      line-height: 1.55;
     }
 
     header {
-      padding: 72px 0 30px;
-      text-align: center;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      color: var(--blue);
-      border: 1px solid var(--line);
-      background: var(--blue-soft);
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 22px;
-      font-weight: 800;
-    }
-
-    h1 {
-      margin: 0 auto 20px;
-      max-width: 980px;
-      font-size: clamp(2.35rem, 6.2vw, 4.75rem);
-      line-height: 0.98;
-      letter-spacing: -0.065em;
-      color: var(--headline);
-    }
-
-    .lead {
-      max-width: 850px;
-      margin: 0 auto 28px;
-      font-size: clamp(1.08rem, 2vw, 1.38rem);
-      color: var(--muted);
-    }
-
-    .lead strong { color: var(--text); font-weight: 700; }
-
-    .hero-rule {
-      max-width: 780px;
-      margin: 34px auto 0;
-      padding: 24px 28px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
-    .hero-rule span { color: var(--blue); font-weight: 800; }
-
-    section { padding: 38px 0; }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 26px;
-    }
-
-    .section-title .label {
-      color: var(--blue);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 0.78rem;
-      font-weight: 800;
-    }
-
-    .section-title h2 {
-      margin: 8px auto 0;
-      font-size: clamp(1.9rem, 3vw, 3rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      max-width: 780px;
-      color: var(--headline);
-    }
-
-    .section-title p {
-      max-width: 790px;
-      margin: 16px auto 0;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .pillar-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .pillar-card {
-      position: relative;
+      padding: 28px 8%;
       display: flex;
-      flex-direction: column;
-      min-height: 360px;
-      background: linear-gradient(180deg, rgba(16, 36, 60, 0.94), rgba(13, 27, 46, 0.88));
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 26px;
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.18);
-      overflow: hidden;
-    }
-
-    .pillar-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(47, 128, 237, 0.16), transparent 14rem);
-      pointer-events: none;
-    }
-
-    .pillar-card > * { position: relative; }
-
-    .pillar-kicker {
-      color: var(--blue);
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    .pillar-card h3 {
-      margin: 0 0 6px;
-      color: var(--headline);
-      font-size: 1.35rem;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-    }
-
-    .pillar-role {
-      color: var(--green);
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.78rem;
-      margin-bottom: 18px;
-    }
-
-    .pillar-card p {
-      color: var(--muted);
-      margin: 0 0 18px;
-      font-size: 0.96rem;
-    }
-
-    .file-meta {
-      margin-top: auto;
-      padding: 14px 0 16px;
-      border-top: 1px solid var(--line);
-      color: var(--dim);
-      font-size: 0.93rem;
-    }
-
-    .file-meta strong { color: var(--text); }
-
-    .button {
-      display: inline-flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 0 20px;
-      border-radius: 999px;
-      border: 1px solid var(--blue);
-      background: var(--blue);
-      color: var(--white);
+      border-bottom: 1px solid var(--line);
+      background: rgba(250, 250, 248, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--blue);
+    }
+
+    nav a {
+      margin-left: 24px;
       text-decoration: none;
-      font-weight: 800;
-      cursor: pointer;
-      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-      background: #3b8df7;
-    }
-
-    .button.secondary {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--line);
-    }
-
-    .button.secondary:hover {
-      border-color: var(--blue);
-      color: var(--white);
-    }
-
-    .stack-note {
-      max-width: 900px;
-      margin: 22px auto 0;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(13, 27, 46, 0.68);
-      text-align: center;
-    }
-
-    .stack-note .equation {
-      color: var(--text);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 0.92rem;
-      margin-bottom: 10px;
-    }
-
-    .stack-note .equation span {
-      color: var(--blue);
-      font-weight: 900;
-      margin: 0 8px;
-    }
-
-    .stack-note p {
       color: var(--muted);
-      margin: 0 0 18px;
-    }
-
-    .grid-3, .grid-4, .grid-2 {
-      display: grid;
-      gap: 18px;
-    }
-
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
-
-    .card {
-      background: rgba(13, 27, 46, 0.82);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 24px;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      color: var(--headline);
-      font-size: 1.05rem;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    .number {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: inline-grid;
-      place-items: center;
-      background: var(--blue-soft);
-      color: var(--blue);
-      font-weight: 900;
-      margin-bottom: 14px;
-    }
-
-    .why-box {
-      background: linear-gradient(180deg, rgba(16, 36, 60, 0.82), rgba(13, 27, 46, 0.88));
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 30px;
-      max-width: 930px;
-      margin: 0 auto;
-    }
-
-    .why-box p {
-      color: var(--muted);
-      margin: 0 0 16px;
-      font-size: 1.02rem;
-    }
-
-    .why-box p:last-child { margin-bottom: 0; }
-    .why-box strong { color: var(--text); }
-
-    .activation-copy {
-      display: block;
-      margin-top: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(7, 17, 31, 0.72);
-      color: var(--text);
-      font-weight: 800;
       font-size: 0.95rem;
     }
 
-    .signal-list {
+    nav a:hover {
+      color: var(--blue);
+    }
+
+    .hero {
+      padding: 110px 8% 90px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin: 0 0 28px;
+      max-width: 980px;
+    }
+
+    .hero p {
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 36px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 14px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid var(--line);
+    }
+
+    .primary {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+    }
+
+    .secondary {
+      color: var(--blue);
+      background: white;
+    }
+
+    section {
+      padding: 80px 8%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 720px;
+      font-size: 1.15rem;
+      margin-bottom: 42px;
+    }
+
+    .modes {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .mode {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 26px;
+      min-height: 220px;
+    }
+
+    .mode h3 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+    }
+
+    .mode p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .source { border-top: 6px solid var(--gray); }
+    .eli { border-top: 6px solid var(--blue); }
+    .ele { border-top: 6px solid var(--teal); }
+    .wild { border-top: 6px solid var(--purple); }
+    .uno { border-top: 6px solid var(--amber); }
+
+    .demo {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      background: #FAFAF8;
+    }
+
+    .panel h3 {
+      margin-top: 0;
+    }
+
+    .panel ul {
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .applications {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 22px;
+      gap: 18px;
     }
 
-    .signal-list div {
+    .app {
+      background: white;
       border: 1px solid var(--line);
-      background: rgba(7, 17, 31, 0.55);
-      border-radius: 999px;
-      padding: 10px 12px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    .bar {
-      margin: 32px 0 10px;
-      padding: 26px 18px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      text-align: center;
-      color: var(--text);
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      font-size: 0.92rem;
-    }
-
-    .bar span {
+      border-radius: 18px;
+      padding: 22px;
+      font-weight: 700;
       color: var(--blue);
-      margin: 0 10px;
-      font-weight: 900;
     }
 
     footer {
-      padding: 44px 0 60px;
-      text-align: center;
-      color: var(--dim);
-      font-size: 0.92rem;
-    }
-
-    footer nav { margin-top: 14px; }
-
-    footer a {
+      border-top: 1px solid var(--line);
+      padding: 42px 8%;
       color: var(--muted);
-      text-decoration: none;
-      margin: 0 10px;
+      font-size: 0.95rem;
     }
 
-    footer a:hover { color: var(--blue); }
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
 
-    @media (max-width: 980px) {
-      .pillar-grid, .grid-4 { grid-template-columns: repeat(2, 1fr); }
-      .signal-list { grid-template-columns: repeat(2, 1fr); }
-    }
+      nav a {
+        margin-left: 0;
+        margin-right: 16px;
+      }
 
-    @media (max-width: 720px) {
-      .page { width: min(100% - 28px, 1120px); }
-      header { padding-top: 48px; }
-      .pillar-grid, .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
-      .bar { letter-spacing: 0.04em; }
-      .signal-list { grid-template-columns: 1fr; }
-      footer a { display: inline-block; margin: 5px 8px; }
+      .modes,
+      .applications,
+      .demo {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main class="page">
-    <header>
-      <div class="eyebrow">Emergency Logic Engine</div>
-      <h1>An engine for reasoning through complex systems and returning what advances.</h1>
-      <p class="lead">
-        Every complex system contains conditions, dependencies, communication paths, records, authority, and decision points. The Emergency Logic Engine separates noise from constraints, identifies the condition governing advancement, and returns the procedural minimum associated with that condition.
+
+  <header>
+    <div class="brand">VERSION 11.2</div>
+    <nav>
+      <a href="#how">How It Works</a>
+      <a href="#demo">Demo</a>
+      <a href="#applications">Applications</a>
+      <a href="#story">Story</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="eyebrow">Human Cognitive Operating System</div>
+      <h1>Don’t make AI smarter. Make humans more stable.</h1>
+      <p>
+        Version 11.2 lets people deliberately shift cognitive states instead of forcing AI to discover,
+        organize, orient, imagine, and escalate all at once.
       </p>
-      <div class="hero-rule">
-        <span>Condition Analysis</span> • Constraint Identification • Procedural Minimums • System Advancement
-      </div>
-    </header>
-
-    <section id="downloads">
-      <div class="section-title">
-        <div class="label">Three Pillars</div>
-        <h2>The complete operating stack.</h2>
-        <p>The Emergency Logic Engine operates through a three-pillar architecture. Pillar I establishes the laboratory record. Pillar II establishes the emergency logic layer. Pillar III establishes the engine core.</p>
-      </div>
-
-      <div class="pillar-grid">
-        <article class="pillar-card">
-          <div class="pillar-kicker">Pillar I</div>
-          <h3>Laboratory</h3>
-          <div class="pillar-role">Institutional Record</div>
-          <p>The laboratory record documents the development environment through which the Emergency Logic Engine emerged. The record contains real-world conditions, communications, filings, institutional responses, dependency chains, and escalation paths.</p>
-          <div class="file-meta"><strong>PDF</strong> • 46.4 MB</div>
-          <a class="button" href="files/pillar-1-laboratory.pdf" download>Download Pillar I</a>
-        </article>
-
-        <article class="pillar-card">
-          <div class="pillar-kicker">Pillar II</div>
-          <h3>Emergency Logic</h3>
-          <div class="pillar-role">Reasoning Layer</div>
-          <p>The emergency logic layer formalizes condition analysis, dependency mapping, communication review, custodianship identification, verification review, constraint analysis, and procedural minimum identification.</p>
-          <div class="file-meta"><strong>PDF</strong> • 2.8 MB</div>
-          <a class="button" href="files/pillar-2-logic.pdf" download>Download Pillar II</a>
-        </article>
-
-        <article class="pillar-card">
-          <div class="pillar-kicker">Pillar III</div>
-          <h3>Engine Core</h3>
-          <div class="pillar-role">Operating Layer</div>
-          <p>The engine core applies emergency logic across AI systems. The operating layer performs condition analysis, dependency tracing, communication review, pivot-point identification, hold-short review, and procedural minimum generation.</p>
-          <div class="file-meta"><strong>PDF</strong> • 42.3 KB</div>
-          <a class="button" href="files/pillar-3-kernel.pdf" download>Download Pillar III</a>
-        </article>
-      </div>
-
-      <div class="stack-note">
-        <div class="equation">46.4 MB <span>/</span> 2.8 MB <span>/</span> 42.3 KB</div>
-        <p>A laboratory record distilled into emergency logic and reduced into a portable engine core.</p>
-        <a class="button secondary" href="files/emergency-logic-engine-complete-stack.zip" download>Download Complete Stack</a>
+      <div class="buttons">
+        <a class="button primary" href="#demo">See the Difference</a>
+        <a class="button secondary" href="#how">How It Works</a>
       </div>
     </section>
 
-    <section id="activation">
-      <div class="section-title">
-        <div class="label">Activation</div>
-        <h2>Activate the Emergency Logic Engine.</h2>
-        <p>Download all three pillars. Open a fresh AI session. Upload Pillar I, Pillar II, and Pillar III. Enter the activation command.</p>
-      </div>
+    <section id="how">
+      <h2 class="section-title">One AI. Five ways to think.</h2>
+      <p class="section-subtitle">
+        Instead of one general assistant trying to do everything at once, Version 11.2 separates
+        cognitive work into distinct operating states.
+      </p>
 
-      <div class="grid-3">
-        <div class="card">
-          <div class="number">1</div>
-          <h3>Download</h3>
-          <p>Download Pillar I, Pillar II, and Pillar III. The three pillars form the complete operating stack.</p>
+      <div class="modes">
+        <div class="mode source">
+          <h3>SOURCE</h3>
+          <p>Talk freely. Explore ideas without operating constraints.</p>
         </div>
 
-        <div class="card">
-          <div class="number">2</div>
-          <h3>Upload</h3>
-          <p>Open a fresh AI session and upload all three pillars into the active conversation.</p>
+        <div class="mode eli">
+          <h3>ELI</h3>
+          <p>Work through a problem with a procedural teammate.</p>
         </div>
 
-        <div class="card">
-          <div class="number">3</div>
-          <h3>Activate</h3>
-          <p>Enter the activation command inside the AI session.</p>
-          <span class="activation-copy">Activate the Emergency Logic Engine.</span>
+        <div class="mode ele">
+          <h3>ELE</h3>
+          <p>Restore orientation and identify what deserves attention now.</p>
+        </div>
+
+        <div class="mode wild">
+          <h3>WILD CARD</h3>
+          <p>Expand possibility, reframe assumptions, and generate alternatives.</p>
+        </div>
+
+        <div class="mode uno">
+          <h3>UNO</h3>
+          <p>Compress possibility into action when time and consequence matter.</p>
         </div>
       </div>
     </section>
 
-    <section id="filter">
-      <div class="section-title">
-        <div class="label">Intake Filter</div>
-        <h2>Signal separation before analysis.</h2>
-        <p>The Engine receives raw information, separates operational signal from legal and emotional noise, and preserves the conditions relevant to advancement.</p>
-      </div>
+    <section id="demo">
+      <h2 class="section-title">The difference is cognitive drift.</h2>
+      <p class="section-subtitle">
+        Normal AI blends multiple types of thinking together. Version 11.2 separates them.
+      </p>
 
-      <div class="grid-3">
-        <div class="card">
-          <div class="number">1</div>
-          <h3>Information</h3>
-          <p>Records, communications, timelines, claims, metrics, and reports enter the intake layer.</p>
+      <div class="demo">
+        <div class="panel">
+          <h3>Normal AI</h3>
+          <p><strong>User:</strong> “My team has conflicting reports and the system is stalled.”</p>
+          <ul>
+            <li>Brainstorms causes</li>
+            <li>Suggests solutions</li>
+            <li>Explains background</li>
+            <li>Invents possibilities</li>
+            <li>Risks drifting away from the governing condition</li>
+          </ul>
         </div>
-        <div class="card">
-          <div class="number">2</div>
-          <h3>Signal</h3>
-          <p>Conditions, constraints, dependencies, authority, custody, verification points, and missing records remain active.</p>
-        </div>
-        <div class="card">
-          <div class="number">3</div>
-          <h3>Noise</h3>
-          <p>Complaint language, blame language, legal posturing, emotional debris, and ideological material move outside the active reasoning path.</p>
-        </div>
-      </div>
-    </section>
 
-    <section id="hold-short">
-      <div class="section-title">
-        <div class="label">Hold Short</div>
-        <h2>Advancement requires clearance.</h2>
-        <p>The Emergency Logic Engine preserves system integrity through hold-short behavior. Incomplete inputs, unresolved dependencies, contradictory records, and missing authority produce a hold-short status.</p>
-      </div>
-
-      <div class="why-box">
-        <p><strong>Hold Short</strong> means the Engine has identified a required condition still awaiting verification. Advancement resumes through resolution of that condition.</p>
-        <p>The same logic that supports clearance also supports restraint. Procedural minimums govern advancement. Missing procedural minimums govern hold-short status.</p>
-      </div>
-    </section>
-
-    <section id="testing">
-      <div class="section-title">
-        <div class="label">Model Testing</div>
-        <h2>Cross-platform operation.</h2>
-        <p>Testing includes major AI systems. Activation behavior varies across platforms. Condition analysis remains consistent. Emergency logic remains unchanged.</p>
-      </div>
-
-      <div class="why-box">
-        <div class="signal-list">
-          <div>Claude</div>
-          <div>ChatGPT</div>
-          <div>Gemini</div>
-          <div>Grok</div>
+        <div class="panel">
+          <h3>Version 11.2</h3>
+          <p><strong>User:</strong> “ELE.”</p>
+          <ul>
+            <li>Stabilizes the environment</li>
+            <li>Separates signal from noise</li>
+            <li>Identifies unreconciled conditions</li>
+            <li>Returns the procedural minimum</li>
+            <li>Stops where expertise begins</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="purpose">
-      <div class="section-title">
-        <div class="label">Purpose</div>
-        <h2>Condition analysis through emergency logic.</h2>
-      </div>
+    <section id="applications">
+      <h2 class="section-title">Built for high-load environments.</h2>
+      <p class="section-subtitle">
+        Version 11.2 is designed for professionals working with incomplete information,
+        conflicting reports, uncertain timelines, and operational pressure.
+      </p>
 
-      <div class="why-box">
-        <p>The Emergency Logic Engine identifies system conditions associated with advancement.</p>
-
-        <div class="signal-list">
-          <div>Constraints</div>
-          <div>Dependencies</div>
-          <div>Communication Paths</div>
-          <div>Custodianship</div>
-          <div>Verification</div>
-          <div>Pivot Points</div>
-          <div>Bottlenecks</div>
-          <div>Procedural Minimums</div>
-        </div>
+      <div class="applications">
+        <div class="app">Emergency Medicine</div>
+        <div class="app">Judges</div>
+        <div class="app">Lawyers</div>
+        <div class="app">Clerks</div>
+        <div class="app">Hospitals</div>
+        <div class="app">Executives</div>
+        <div class="app">Journalists</div>
+        <div class="app">Engineers</div>
       </div>
     </section>
 
-    <section id="process">
-      <div class="section-title">
-        <div class="label">Process</div>
-        <h2>Condition to advancement.</h2>
-      </div>
-
-      <div class="grid-3">
-        <div class="card">
-          <div class="number">1</div>
-          <h3>Condition</h3>
-          <p>A condition enters the system for analysis.</p>
-        </div>
-        <div class="card">
-          <div class="number">2</div>
-          <h3>Constraint</h3>
-          <p>Dependencies, communication paths, records, and authorities are mapped. The governing condition is identified.</p>
-        </div>
-        <div class="card">
-          <div class="number">3</div>
-          <h3>Procedural Minimum</h3>
-          <p>The procedural minimum associated with the governing condition is identified.</p>
-        </div>
-      </div>
+    <section id="story">
+      <h2 class="section-title">Why it exists.</h2>
+      <p class="section-subtitle">
+        Version 11.2 emerged from a year-long experiment inside emergency logic, systems failure,
+        institutional response, and AI behavior. The central discovery was simple:
+        AI does not only need more intelligence. It needs better state control.
+      </p>
+      <p class="section-subtitle">
+        The result is a Human Cognitive Operating System for discovery, collaboration,
+        orientation, imagination, and escalation.
+      </p>
     </section>
 
-    <section id="neutrality">
-      <div class="section-title">
-        <div class="label">Operating Principle</div>
-        <h2>Mitigation governs the reasoning path.</h2>
-        <p>The Emergency Logic Engine evaluates the state of the system through conditions, constraints, and mitigation paths. Inputs tied to advancement remain active. Inputs outside mitigation move outside the active reasoning path.</p>
-      </div>
-
-      <div class="why-box">
-        <div class="signal-list">
-          <div>State</div>
-          <div>Awareness</div>
-          <div>Custody</div>
-          <div>Authority</div>
-          <div>Verification</div>
-          <div>Mitigation</div>
-          <div>Clearance</div>
-          <div>Advancement</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="examples">
-      <div class="section-title">
-        <div class="label">Applications</div>
-        <h2>Stalled-system analysis across fields.</h2>
-      </div>
-
-      <div class="grid-4">
-        <div class="card">
-          <h3>Petitioners</h3>
-          <p>General complaints convert into precise procedural questions tied to unresolved conditions.</p>
-        </div>
-        <div class="card">
-          <h3>Judges</h3>
-          <p>Competing records receive condition analysis, custodial mapping, and first-condition identification.</p>
-        </div>
-        <div class="card">
-          <h3>Patent Lawyers</h3>
-          <p>Case files receive claim-term review, prior-art dependency review, and pivot-point identification.</p>
-        </div>
-        <div class="card">
-          <h3>Journalists</h3>
-          <p>Tips and allegations receive verification review and first-discrepancy identification.</p>
-        </div>
-        <div class="card">
-          <h3>Executives</h3>
-          <p>Operational problems receive constraint analysis across information, authority, process, staffing, capacity, and timing.</p>
-        </div>
-        <div class="card">
-          <h3>Hospitals</h3>
-          <p>Patient-flow, transfer, staffing, and capacity records receive bottleneck analysis.</p>
-        </div>
-        <div class="card">
-          <h3>Congressional Offices</h3>
-          <p>Constituent complaints convert into narrow inquiries tied to notice, authority, records, and unresolved conditions.</p>
-        </div>
-        <div class="card">
-          <h3>Technical Systems</h3>
-          <p>Complex records receive dependency tracing, metric review, root-cause review, and decision-space analysis.</p>
-        </div>
-      </div>
-    </section>
-
-    <div class="bar">
-      Condition <span>•</span> Signal <span>•</span> Constraint <span>•</span> Procedural Minimum <span>•</span> Advancement
-    </div>
   </main>
 
   <footer>
-    <div>Emergency Logic Engine — system advancement through emergency logic.</div>
-    <nav>
-      <a href="#downloads">Three Pillars</a>
-      <a href="#activation">Activation</a>
-      <a href="#filter">Intake Filter</a>
-      <a href="#hold-short">Hold Short</a>
-      <a href="#examples">Applications</a>
-      <a href="#">Live Tests</a>
-      <a href="#">Origin Record</a>
-    </nav>
+    VERSION 11.2 — Human Cognitive Operating System<br />
+    SOURCE · ELI · ELE · WILD CARD · UNO
   </footer>
+
 </body>
 </html>
+```
