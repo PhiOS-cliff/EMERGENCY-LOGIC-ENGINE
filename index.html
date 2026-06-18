@@ -6,743 +6,83 @@
   <title>ELE | Emergency Logic Engine</title>
   <style>
     :root {
-      --bg: #172b35;
-      --bg2: #22384a;
-      --panel: rgba(12, 28, 40, 0.72);
-      --panel2: rgba(14, 31, 43, 0.86);
-      --text: #fff7e7;
-      --muted: #c9d5cf;
-      --line: rgba(255, 247, 231, 0.18);
-      --gold: #f0c46a;
-      --rose: #db846f;
-      --blue: #7eb2cf;
-      --green: #bde3d7;
-      --violet: #8c84bb;
-      --dark: #071017;
+      --bg: #172b35; --panel: rgba(8, 19, 27, 0.6); --text: #fff7e7;
+      --muted: #c9d5cf; --line: rgba(255, 247, 231, 0.15);
+      --gold: #f0c46a; --rose: #db846f;
     }
-
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: sans-serif; color: var(--text); background: #132934; line-height: 1.6; }
+    
+    header { padding: 20px 7vw; display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); background: rgba(13, 25, 34, 0.9); position: sticky; top: 0; z-index: 100; }
+    main { width: min(1120px, 90vw); margin: 0 auto; }
+    section { padding: 80px 0; border-bottom: 1px solid var(--line); }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 12% 15%, rgba(126,178,207,.36), transparent 30%),
-        radial-gradient(circle at 84% 18%, rgba(140,132,187,.34), transparent 32%),
-        radial-gradient(circle at 70% 84%, rgba(219,132,111,.26), transparent 34%),
-        linear-gradient(135deg, #132934, #2a344d 55%, #18232f);
-      line-height: 1.58;
+    /* Layout: Fixed clustering via Grid areas */
+    .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; align-items: start; }
+    
+    .visual-card { 
+      min-height: 400px; border: 1px solid var(--line); border-radius: 24px; 
+      background: var(--panel); position: relative; padding: 40px;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 12px 12px;
-      pointer-events: none;
-      opacity: .55;
-      z-index: -1;
+    .terminal { 
+      background: #03070a; border: 1px solid var(--line); border-radius: 24px; 
+      padding: 30px; min-height: 400px; display: flex; flex-direction: column;
     }
+    .console { margin-top: auto; font-family: monospace; color: var(--gold); }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 18px 7vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--line);
-      background: rgba(13, 25, 34, .78);
-      backdrop-filter: blur(14px);
-    }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { border: 1px solid var(--line); border-radius: 20px; background: rgba(8,19,27,0.5); padding: 25px; }
 
-    .logo {
-      letter-spacing: .16em;
-      font-size: .9rem;
-      color: var(--text);
-      white-space: nowrap;
-    }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1; margin: 0 0 20px; }
+    .button { padding: 12px 24px; background: var(--rose); color: #000; text-decoration: none; border-radius: 50px; font-weight: bold; display: inline-block; }
 
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      margin-left: 18px;
-      font-size: .86rem;
-    }
-
-    nav a:hover { color: var(--text); }
-
-    main {
-      width: min(1120px, 86vw);
-      margin: 0 auto;
-    }
-
-    section {
-      padding: 64px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .first {
-      min-height: 82vh;
-      border-top: 0;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-size: .76rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(3.35rem, 7vw, 7.2rem);
-      line-height: .9;
-      font-weight: 700;
-      margin: 0 0 24px;
-      letter-spacing: -.06em;
-    }
-
-    h2 {
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      line-height: 1.03;
-      font-weight: 700;
-      margin: 0 0 20px;
-      letter-spacing: -.04em;
-    }
-
-    h3 {
-      font-size: 1.2rem;
-      margin: 0 0 10px;
-      color: var(--text);
-    }
-
-    p {
-      color: var(--muted);
-      font-size: 1.04rem;
-      max-width: 740px;
-    }
-
-    .lead {
-      color: var(--text);
-      font-size: 1.24rem;
-      max-width: 780px;
-    }
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-      margin-top: 28px;
-    }
-
-    .button {
-      display: inline-block;
-      color: var(--dark);
-      text-decoration: none;
-      border-radius: 999px;
-      padding: 13px 18px;
-      background: linear-gradient(135deg, var(--rose), var(--gold));
-      font-weight: 700;
-      font-size: .92rem;
-    }
-
-    .button.secondary {
-      color: var(--text);
-      background: rgba(255,255,255,.08);
-      border: 1px solid var(--line);
-    }
-
-    .callout {
-      margin: 22px 0;
-      padding: 20px 22px;
-      border-left: 3px solid var(--gold);
-      background: rgba(8, 19, 27, .45);
-      border-radius: 0 18px 18px 0;
-      color: var(--text);
-      font-size: clamp(1.12rem, 1.9vw, 1.45rem);
-      line-height: 1.28;
-    }
-
-    .small-note {
-      color: var(--muted);
-      font-size: .95rem;
-    }
-
-    .visual-card {
-      min-height: 410px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      background: rgba(8, 19, 27, .62);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,.28);
-    }
-
-    .visual-card::before {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      background:
-        radial-gradient(circle at 24% 30%, rgba(126,178,207,.38), transparent 22%),
-        radial-gradient(circle at 72% 34%, rgba(140,132,187,.32), transparent 25%),
-        radial-gradient(circle at 52% 85%, rgba(189,227,215,.20), transparent 26%);
-      filter: blur(6px);
-    }
-
-    .stars {
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255,247,231,.72) 1px, transparent 1px);
-      background-size: 36px 36px;
-      opacity: .26;
-    }
-
-    .horizon {
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 42%;
-      background: linear-gradient(180deg, transparent, rgba(189,227,215,.14), rgba(7,16,23,.72));
-    }
-
-    .hud {
-      position: absolute;
-      inset: 42px;
-      border: 1px solid rgba(126,178,207,.48);
-      border-radius: 26px;
-      background:
-        linear-gradient(rgba(126,178,207,.12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(126,178,207,.12) 1px, transparent 1px);
-      background-size: 36px 36px;
-    }
-
-    .hud::before {
-      content: "OBSERVE   DETECT   ADVANCE";
-      position: absolute;
-      top: 22px;
-      left: 22px;
-      color: var(--gold);
-      letter-spacing: .14em;
-      font-size: .72rem;
-      font-weight: 700;
-    }
-
-    .hud-circle {
-      position: absolute;
-      width: 170px;
-      height: 170px;
-      border: 1px solid rgba(189,227,215,.7);
-      border-radius: 50%;
-      left: calc(50% - 85px);
-      top: calc(50% - 85px);
-      box-shadow: 0 0 32px rgba(189,227,215,.15);
-    }
-
-    .hud-card {
-      position: absolute;
-      width: 190px;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(7,16,23,.76);
-      color: var(--muted);
-      font-size: .86rem;
-    }
-
-    .hud-card strong {
-      display: block;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    .hud-card.one { top: 64px; left: 42px; }
-    .hud-card.two { right: 42px; top: 166px; }
-    .hud-card.three { left: 72px; bottom: 54px; }
-
-    .terminal {
-      position: relative;
-      padding: 28px;
-      min-height: 430px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      background: rgba(3, 7, 10, .86);
-      box-shadow: 0 24px 80px rgba(0,0,0,.28);
-      overflow: hidden;
-    }
-
-    .file {
-      width: min(330px, 100%);
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 12px;
-      padding: 10px 12px;
-      margin: 8px 0 0 auto;
-      color: var(--text);
-      font-size: .86rem;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      background: rgba(255,255,255,.035);
-    }
-
-    .file span { color: var(--muted); }
-
-    .icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: #ff453a;
-      flex: 0 0 auto;
-    }
-
-    .icon.blue { background: #2f82e6; }
-
-    .terminal-button {
-      display: inline-block;
-      margin: 14px 0 22px auto;
-      float: right;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.18);
-      color: var(--text);
-      font-size: .88rem;
-    }
-
-    .console {
-      clear: both;
-      position: absolute;
-      left: 34px;
-      bottom: 34px;
-      right: 34px;
-      color: var(--text);
-      font-size: .93rem;
-      line-height: 1.9;
-    }
-
-    .console .off { color: var(--muted); }
-
-    .split {
-      display: grid;
-      grid-template-columns: .95fr 1.05fr;
-      gap: 46px;
-      align-items: center;
-    }
-
-    .split.reverse { grid-template-columns: 1.05fr .95fr; }
-
-    .cards, .pillars, .downloads {
-      display: grid;
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .cards { grid-template-columns: repeat(3, 1fr); }
-    .pillars { grid-template-columns: repeat(3, 1fr); }
-    .downloads { grid-template-columns: repeat(4, 1fr); }
-
-    .card, .panel, .pillar, .download {
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background: rgba(8, 19, 27, .55);
-      padding: 24px;
-    }
-
-    .card { min-height: 205px; }
-    .pillar { min-height: 286px; }
-
-    .download {
-      color: var(--text);
-      text-decoration: none;
-      min-height: 132px;
-    }
-
-    .download small {
-      display: block;
-      color: var(--muted);
-      margin-top: 10px;
-    }
-
-    .accent {
-      width: 44px;
-      height: 4px;
-      background: var(--gold);
-      border-radius: 999px;
-      margin-bottom: 18px;
-    }
-
-    .flow {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .node {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,.055);
-      color: var(--text);
-    }
-
-    .node span { color: var(--muted); }
-    .arrow { text-align: center; color: var(--gold); font-size: 1.35rem; line-height: 1; }
-    .loop { color: var(--green); text-align: center; font-size: 1.35rem; margin-top: 10px; }
-
-    .mode-diagram {
-      display: grid;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .mode-row {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .mode-box {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(8, 19, 27, .58);
-      color: var(--text);
-      min-height: 88px;
-    }
-
-    .mode-box strong {
-      color: var(--gold);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .mode-arrow {
-      color: var(--gold);
-      font-size: 1.5rem;
-    }
-
-    .num {
-      color: var(--gold);
-      letter-spacing: .16em;
-      font-size: .74rem;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      font-weight: 700;
-    }
-
-    .statement {
-      font-size: clamp(2rem, 4.8vw, 4.5rem);
-      line-height: 1.05;
-      color: var(--text);
-      max-width: 1000px;
-      letter-spacing: -.04em;
-      font-weight: 700;
-    }
-
-    .disclaimer {
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background: rgba(8, 19, 27, .55);
-      padding: 24px;
-      margin-top: 28px;
-    }
-
-    footer {
-      padding: 42px 7vw;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      background: rgba(7,16,23,.82);
-    }
-
-    footer p { margin: 6px 0; }
-
-    @media (max-width: 900px) {
-      header { flex-direction: column; align-items: flex-start; gap: 14px; }
-      nav a { margin-left: 0; margin-right: 13px; display: inline-block; margin-bottom: 8px; }
-      .first, .split, .split.reverse { grid-template-columns: 1fr; }
-      .cards, .pillars, .downloads { grid-template-columns: 1fr; }
-      .mode-row { grid-template-columns: 1fr; }
-      .mode-arrow { text-align: center; transform: rotate(90deg); }
-      .visual-card, .terminal { min-height: 380px; }
-      section { padding: 58px 0; }
-      .hud-card { width: 165px; }
-      .hud-card.two { right: 22px; }
-    }
+    @media (max-width: 768px) { section { padding: 40px 0; } }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="logo">ELE</div>
-    <nav>
-      <a href="#enter">Enter ELE</a>
-      <a href="#problem">Problem</a>
-      <a href="#loop">Loop</a>
-      <a href="#modes">Modes</a>
-      <a href="#pillars">Pillars</a>
-      <a href="#testing">Testing</a>
-      <a href="#downloads">Downloads</a>
-    </nav>
+    <div class="logo"><strong>ELE</strong></div>
+    <nav><a href="#top" style="color:var(--muted); text-decoration:none;">Engine</a></nav>
   </header>
 
   <main>
-    <section class="first" id="top">
+    <section class="grid-container" id="top">
       <div>
-        <div class="eyebrow">Emergency Logic Engine</div>
-        <h1>Organize uncertainty before solving problems.</h1>
-        <p class="lead">ELE is a procedural framework for navigating incomplete information, conflicting reports, uncertain timelines, and distributed responsibility.</p>
-        <p>This is a condensed review page for lawyers, operators, and testers. It explains the core idea without selling anything.</p>
-        <div class="callout">Humans are good at solving problems. Humans are poor at organizing uncertainty.</div>
-        <div class="button-row">
-          <a class="button" href="#enter">Enter ELE</a>
-          <a class="button secondary" href="#loop">Open Loop to Closed Loop</a>
-        </div>
+        <h1>Organize uncertainty.</h1>
+        <p>ELE is a procedural framework for navigating incomplete information and distributed responsibility.</p>
+        <a class="button" href="#enter">Enter Engine</a>
       </div>
-
       <div class="visual-card">
-        <div class="stars"></div>
-        <div class="hud">
-          <div class="hud-circle"></div>
-          <div class="hud-card one"><strong>Observe</strong>Collect what is visible before conclusions form.</div>
-          <div class="hud-card two"><strong>Detect</strong>Identify bottlenecks, repetition, and missing inputs.</div>
-          <div class="hud-card three"><strong>Advance</strong>Determine what must be determined next.</div>
-        </div>
+        <h3>System HUD</h3>
+        <p>Observe | Detect | Advance</p>
       </div>
     </section>
 
-    <section id="enter">
-      <div class="split reverse">
-        <div class="terminal">
-          <div class="file"><div class="icon"></div><div><strong>[Master] [Pillar 3] Engine.pdf</strong><br><span>PDF</span></div></div>
-          <div class="file"><div class="icon"></div><div><strong>[Master] [Pillar 2] Logic.pdf</strong><br><span>PDF</span></div></div>
-          <div class="file"><div class="icon blue"></div><div><strong>Pasted text.txt</strong><br><span>Document</span></div></div>
-          <div class="terminal-button">activate kernel</div>
-          <div class="console">
-            <div>ELI INITIALIZATION</div>
-            <div>WHO ARE YOU?</div>
-            <div>WHAT IS THE SITUATION?</div>
-            <br>
-            <div class="off">EXIT ELI:</div>
-            <div class="off">SOURCE ACTIVE</div>
-            <div class="off">ELI: OFF</div>
-            <div class="off">ELE: OFF</div>
-            <div class="off">SOURCE is now the active state.</div>
-          </div>
-        </div>
-
-        <div>
-          <div class="eyebrow">Enter ELE</div>
-          <h2>A mode switch, not a replacement for AI.</h2>
-          <p>ELE sits above ordinary AI use. The operator activates procedural mode when a situation needs organization, then exits back to SOURCE when standard AI behavior is useful again.</p>
-          <p>ELI is the Emergency Logic Interface. It isolates the condition. ELE is the Emergency Logic Engine. It organizes the condition through a tighter loop.</p>
-          <div class="callout">AI expands. ELI isolates. ELE organizes. The pilot advances.</div>
+    <section id="enter" class="grid-container">
+      <div class="terminal">
+        <div class="console">
+          <div>ELI INITIALIZATION</div>
+          <div>WHO ARE YOU?</div>
+          <div>WHAT IS THE SITUATION?</div>
         </div>
       </div>
-    </section>
-
-    <section id="problem">
-      <div class="split">
-        <div>
-          <div class="eyebrow">The Problem</div>
-          <h2>More information rarely creates more clarity.</h2>
-          <p>General purpose AI is powerful because it expands. It generates alternatives, possibilities, explanations, pathways, summaries, and language.</p>
-          <p>That expansion is useful. It can also overwhelm people working inside uncertain conditions. Most systems do not fail from lack of effort. Most systems fail from lack of visibility.</p>
-          <div class="callout">An answer is not the same thing as advancement.</div>
-        </div>
-        <div class="visual-card">
-          <div class="stars"></div>
-          <div class="horizon"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="loop">
-      <div class="split reverse">
-        <div class="panel">
-          <div class="eyebrow">Open Loop</div>
-          <div class="flow">
-            <div class="node"><strong>SOURCE</strong><span>starting material</span></div>
-            <div class="arrow">↓</div>
-            <div class="node"><strong>AI</strong><span>expands possibilities</span></div>
-            <div class="arrow">↓</div>
-            <div class="node"><strong>OUTPUT</strong><span>answer generated</span></div>
-          </div>
-          <br>
-          <div class="eyebrow">Closed Loop</div>
-          <div class="flow">
-            <div class="node"><strong>SOURCE</strong><span>starting material</span></div>
-            <div class="arrow">↓</div>
-            <div class="node"><strong>AI</strong><span>capability</span></div>
-            <div class="arrow">↓</div>
-            <div class="node"><strong>ELI</strong><span>isolate condition</span></div>
-            <div class="arrow">↓</div>
-            <div class="node"><strong>ELE</strong><span>organize condition</span></div>
-            <div class="arrow">↓</div>
-            <div class="node"><strong>PILOT</strong><span>decision authority</span></div>
-            <div class="loop">↺ REASSESS</div>
-          </div>
-        </div>
-
-        <div>
-          <div class="eyebrow">The Core Move</div>
-          <h2>Collapse the open loop into a specialized closed loop.</h2>
-          <p>ELE does not replace AI. ELE specializes AI. It collapses expansion into a procedural loop that narrows, organizes, advances, and reassesses.</p>
-          <p>Open loops generate outputs. Closed loops pursue advancement. The system continuously asks what governs advancement now.</p>
-          <div class="callout">The objective is not speed. The objective is orientation.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="modes">
-      <div class="eyebrow">Moving In and Out of AI</div>
-      <h2>Mode switching should feel intuitive.</h2>
-      <p>The operator does not abandon AI. The operator selects the operating mode that fits the moment. Ordinary AI expands. ELI isolates. ELE organizes. SOURCE returns the operator to standard AI.</p>
-
-      <div class="mode-diagram">
-        <div class="mode-row">
-          <div class="mode-box"><strong>Standard AI</strong>Write, summarize, brainstorm, research, generate options.</div>
-          <div class="mode-arrow">→</div>
-          <div class="mode-box"><strong>Enter ELI</strong>Isolate the condition. Identify what belongs inside the situation.</div>
-          <div class="mode-arrow">→</div>
-          <div class="mode-box"><strong>Exit ELI</strong>Return to SOURCE. Continue ordinary AI work.</div>
-        </div>
-
-        <div class="mode-row">
-          <div class="mode-box"><strong>Legal Review</strong>A reviewer needs a quick explanation of a complicated condition.</div>
-          <div class="mode-arrow">→</div>
-          <div class="mode-box"><strong>ELI</strong>Organize the situation before argument begins.</div>
-          <div class="mode-arrow">→</div>
-          <div class="mode-box"><strong>AI</strong>Draft a memo, email, outline, or filing note.</div>
-        </div>
-
-        <div class="mode-row">
-          <div class="mode-box"><strong>Operator Review</strong>Conflicting reports and uncertain responsibility.</div>
-          <div class="mode-arrow">→</div>
-          <div class="mode-box"><strong>ELI</strong>Separate facts, participants, gaps, and unknowns.</div>
-          <div class="mode-arrow">→</div>
-          <div class="mode-box"><strong>ELE</strong>Identify bottleneck, next determination, and reassessment point.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="layers">
-      <div class="cards">
-        <div class="card">
-          <div class="accent"></div>
-          <h3>SOURCE</h3>
-          <p>Everything begins as source material. A conversation, report, case, patient, project, hazard, or thought.</p>
-        </div>
-        <div class="card">
-          <div class="accent"></div>
-          <h3>AI</h3>
-          <p>AI is the ocean. It expands possibility and gives the operator broad capability.</p>
-        </div>
-        <div class="card">
-          <div class="accent"></div>
-          <h3>ELI</h3>
-          <p>ELI is the flashlight. It narrows the field and isolates the condition.</p>
-        </div>
-        <div class="card">
-          <div class="accent"></div>
-          <h3>ELE</h3>
-          <p>ELE is the HUD. It organizes the condition and continuously reassesses.</p>
-        </div>
-        <div class="card">
-          <div class="accent"></div>
-          <h3>PILOT</h3>
-          <p>The human remains in command. ELE organizes. The pilot decides.</p>
-        </div>
-        <div class="card">
-          <div class="accent"></div>
-          <h3>ADVANCEMENT</h3>
-          <p>The goal is not more activity. The goal is the next required determination.</p>
-        </div>
+      <div>
+        <h2>Mode Switching</h2>
+        <p>ELE sits above ordinary AI. It isolates the condition so the pilot can decide the next determination.</p>
       </div>
     </section>
 
     <section id="pillars">
-      <div class="eyebrow">The Three Pillars</div>
-      <h2>Terrain. Doctrine. Engine.</h2>
-      <p>Together these pillars allow ELE to operate as a specialized closed loop system.</p>
-
-      <div class="pillars">
-        <div class="pillar">
-          <div class="num">Pillar 1</div>
-          <h3>MAP</h3>
-          <p>The terrain. Pillar 1 records environments, boundaries, signals, observations, and demonstration.</p>
-          <p class="small-note">Stephens v Texas serves as one demonstration of Emergency Logic operating inside a real environment.</p>
-        </div>
-        <div class="pillar">
-          <div class="num">Pillar 2</div>
-          <h3>LOGIC</h3>
-          <p>The doctrine. Approximately 1000 pages of Emergency Management logic prepared for machine consumption.</p>
-          <p class="small-note">Stephens did not create new doctrine. He mapped the existing Emergency Management system so machines could operate from it.</p>
-        </div>
-        <div class="pillar">
-          <div class="num">Pillar 3</div>
-          <h3>ENGINE</h3>
-          <p>The machine. The kernel consumes terrain and doctrine, then reorganizes the condition through the loop.</p>
-          <p class="small-note">Terrain plus doctrine becomes a machine.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="testing">
-      <div class="split">
-        <div>
-          <div class="eyebrow">Applicable Areas in Testing</div>
-          <h2>Built for environments with incomplete information.</h2>
-          <p>ELE is being tested as a procedural framework for organizing uncertainty across different environments.</p>
-        </div>
-        <div class="cards">
-          <div class="card"><h3>Emergency Medicine</h3><p>Incomplete history, conflicting symptoms, multiple possible causes.</p></div>
-          <div class="card"><h3>Business Operations</h3><p>Rising costs, delays, and unclear failure points.</p></div>
-          <div class="card"><h3>Emergency Management</h3><p>Multiple agencies, distributed duties, changing conditions.</p></div>
-        </div>
-      </div>
-
-      <div class="disclaimer">
-        <h3>Review note</h3>
-        <p>ELE is a procedural framework under testing. It does not replace professional judgment, legal advice, medical judgment, engineering judgment, emergency command authority, or human decision making. It organizes visibility so the operator can determine what must be determined next.</p>
-      </div>
-    </section>
-
-    <section id="master">
-      <p class="statement">AI expands. ELI isolates. ELE organizes. The pilot advances. The loop continuously reassesses.</p>
-      <div class="button-row">
-        <a class="button" href="#top">Back to Top</a>
-        <a class="button secondary" href="#downloads">Downloads</a>
-      </div>
-    </section>
-
-    <section id="downloads">
-      <div class="eyebrow">Downloads and Support</div>
-      <h2>Testing materials.</h2>
-      <p>This page is for review and testing. Downloads, contact information, contribution links, and disclaimers can live here.</p>
-      <div class="downloads">
-        <a class="download" href="#"><strong>Download Treatise</strong><small>System philosophy and framing.</small></a>
-        <a class="download" href="#"><strong>Download Pillars</strong><small>MAP, LOGIC, and ENGINE.</small></a>
-        <a class="download" href="#"><strong>Download Kernel</strong><small>Bootloader and operating rules.</small></a>
-        <a class="download" href="#"><strong>Contact / Support</strong><small>Contribution, feedback, and review.</small></a>
+      <h2>Three Pillars</h2>
+      <div class="card-grid">
+        <div class="card"><h3>MAP</h3><p>Terrain observation.</p></div>
+        <div class="card"><h3>LOGIC</h3><p>Doctrine foundation.</p></div>
+        <div class="card"><h3>ENGINE</h3><p>Procedural kernel.</p></div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>SOURCE → AI → ELI → ELE → PILOT → ADVANCEMENT → REASSESS ↺</p>
-    <p>Emergency Logic Engine</p>
-  </footer>
 </body>
 </html>
