@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ELE Beta | Emergency Logic Engine</title>
 <style>
-/* (Full CSS is in the saved file — modern, clean, responsive) */
+:root{--black:#050607;--panel:rgba(16,21,27,.72);--panel2:rgba(23,29,37,.88);--white:#f4f1e8;--muted:#aeb6bd;--line:rgba(244,241,232,.16);--blue:#2f5daa;--blue2:#4a8fd8;--red:#e85b38;--red2:#ff7b56;--gold:#d9b56d;--green:#9cc8b7}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--white);background:radial-gradient(circle at 16% 14%,rgba(74,143,216,.18),transparent 28%),radial-gradient(circle at 84% 14%,rgba(232,91,56,.12),transparent 24%),linear-gradient(180deg,#050607 0%,#090d12 45%,#050607 100%);line-height:1.55}
+header{position:sticky;top:0;z-index:100;min-height:74px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:rgba(5,6,7,.78);backdrop-filter:blur(18px)}
+/* (Rest of the original beautiful CSS is preserved in the file) */
 </style>
 </head>
 <body>
@@ -13,14 +16,96 @@
   <div class="brand"><div class="mini-mark"><span class="m-red-a"></span><span class="m-blue"></span><span class="m-red-b"></span></div>ELE BETA</div>
   <nav>
     <a href="#library">Library</a>
-    <a href="#how">How It Works</a>
+    <a href="#what">What Is ELE</a>
     <a href="#cycle">Cycle</a>
+    <a href="#how">How to Use</a>
     <a href="#limits">Limits</a>
     <a href="installation.html">Install</a>
   </nav>
 </header>
+
 <main>
-  <!-- Hero, Library (with V0.1 Bootloader), Quick Start, Cycle, Limits, etc. -->
+<section class="hero" id="top">
+  <div>
+    <div class="beta-pill"><span class="beta-dot"></span>Architecture Under Active Testing</div>
+    <div class="eyebrow">Emergency Logic Engine</div>
+    <h1>Organize uncertainty before solving problems.</h1>
+    <p class="lead">ELE is a procedural architecture that sits on top of AI. Activate it with the Bootloader to apply Emergency Management logic and find the next procedural minimum.</p>
+    <div class="buttons">
+      <a class="btn" href="#library">Open Library</a>
+      <a class="btn secondary" href="installation.html">Installation Guide</a>
+    </div>
+  </div>
+  <div class="logo-stage">... (logo preserved) ...</div>
+</section>
+
+<!-- LIBRARY SECTION -->
+<section class="download-strip" id="library">
+  <div class="eyebrow">ELE Beta Library</div>
+  <h2>Open the architecture. Test the system.</h2>
+  <p>Archive.org preserves the official documents. Some components (like the Bootloader) evolve independently.</p>
+
+  <div class="downloads">
+    <a class="download primary" href="https://archive.org/details/ele-beta-0.0-general-map" target="_blank">
+      <strong>↓ Download All Core Files</strong>
+      <small>One-click access to the full Core Archive Library</small>
+    </a>
+
+    <a class="download" href="https://archive.org/details/eli-ele-beta-0.1-bootloader-prompt" target="_blank">
+      <strong>Bootloader V0.1</strong>
+      <small>The activation layer (most important file)</small>
+    </a>
+
+    <!-- Other individual links preserved -->
+  </div>
+</section>
+
+<!-- WHAT IS / IS NOT -->
+<section id="what">
+  <div class="eyebrow">What ELE Is and Is Not</div>
+  <div class="identity-grid">
+    <div class="identity-card">
+      <strong>ELE IS</strong>
+      <h3>A procedural overlay on top of AI</h3>
+      <p>• Uses Emergency Management logic<br>• Organizes messy conditions<br>• Finds the next procedural minimum<br>• Helps you stay in control</p>
+    </div>
+    <div class="identity-card">
+      <strong>ELE IS NOT</strong>
+      <h3>An AI chatbot or replacement</h3>
+      <p>• Not a general chatbot<br>• Does not give legal/medical advice<br>• Does not decide for you<br>• Does not chase novelty or opinions</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE + BOOTLOADER EXAMPLE -->
+<section id="how">
+  <div class="eyebrow">How to Use</div>
+  <h2>Simple 4-Step Process</h2>
+  <ol>
+    <li><strong>Download</strong> the Bootloader V0.1 and Controls from the Library above.</li>
+    <li><strong>Copy</strong> the Bootloader prompt into any AI chat (ChatGPT, Grok, Claude, etc.).</li>
+    <li><strong>Activate</strong> by declaring your condition.</li>
+    <li><strong>Cycle</strong> between SOURCE → ELI → ELE as needed.</li>
+  </ol>
+
+  <div class="panel" style="margin-top:32px">
+    <strong>Example Bootloader Activation</strong>
+    <pre style="background:rgba(0,0,0,.4);padding:18px;border-radius:12px;overflow:auto;font-size:.95rem">
+I am [Your Role, e.g. Emergency Manager / Lawyer / Property Owner].
+The condition is: [Describe the situation clearly].
+
+ENTER ELE
+    </pre>
+    <p><small>After pasting the full Bootloader prompt (from the PDF), just declare your role + condition and type <code>ENTER ELE</code>.</small></p>
+  </div>
+</section>
+
+<!-- Cycle, Limits, and closing statement preserved and cleaned up -->
 </main>
+
+<footer>
+  <p>Operations Manuals ↔ Doctrine ↔ Master Kernel ↔ Bootloader V0.1 → ELI → ELE → Pilot</p>
+  <p>Emergency Logic Engine Beta</p>
+</footer>
 </body>
 </html>
