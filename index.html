@@ -4,126 +4,1066 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ELE Beta | Emergency Logic Engine</title>
+<meta name="description" content="ELE is a logic engine that operates on top of General AI and transposes default AI reasoning into Emergency Logic." />
+
 <style>
-:root{--black:#050607;--panel:rgba(16,21,27,.72);--panel2:rgba(23,29,37,.88);--white:#f4f1e8;--muted:#aeb6bd;--line:rgba(244,241,232,.16);--blue:#2f5daa;--blue2:#4a8fd8;--red:#e85b38;--red2:#ff7b56;--gold:#d9b56d;--green:#9cc8b7}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--white);background:radial-gradient(circle at 16% 14%,rgba(74,143,216,.18),transparent 28%),radial-gradient(circle at 84% 14%,rgba(232,91,56,.12),transparent 24%),linear-gradient(180deg,#050607 0%,#090d12 45%,#050607 100%);line-height:1.55}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:34px 34px;opacity:.34;z-index:-1}
-header{position:sticky;top:0;z-index:100;min-height:74px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:rgba(5,6,7,.78);backdrop-filter:blur(18px)}.brand{display:flex;align-items:center;gap:13px;letter-spacing:.2em;font-size:.88rem;color:var(--white);white-space:nowrap}.mini-mark{width:34px;height:24px;position:relative}.mini-mark:before{content:"";position:absolute;left:2px;top:0;width:4px;height:24px;border-radius:3px;background:var(--white)}.mini-mark span{position:absolute;left:8px;top:11px;height:3px;width:25px;border-radius:99px;transform-origin:left center}.m-blue{background:var(--blue2)}.m-red-a{background:var(--red2);transform:rotate(-28deg)}.m-red-b{background:var(--red2);transform:rotate(28deg)}nav a{color:var(--muted);text-decoration:none;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-left:22px}nav a:hover{color:var(--white)}
-main{width:min(1220px,88vw);margin:0 auto}section{padding:62px 0;border-top:1px solid var(--line)}.hero{min-height:calc(100vh - 74px);border-top:0;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}.eyebrow{color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-size:.74rem;font-weight:700;margin-bottom:22px}h1{font-size:clamp(3.8rem,7.5vw,7.2rem);line-height:.9;letter-spacing:-.07em;margin:0 0 26px;font-weight:750}h2{font-size:clamp(2.2rem,4.8vw,4.6rem);line-height:1;letter-spacing:-.05em;margin:0 0 22px;font-weight:750}
-.download-strip{padding-top:36px}.downloads{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px}.download{text-decoration:none;color:var(--white);border:1px solid var(--line);border-radius:22px;padding:20px;background:rgba(16,21,27,.72);transition:all .18s}.download:hover{transform:translateY(-4px);border-color:var(--gold)}.download.primary{grid-column:span 2;background:radial-gradient(circle at 18% 25%,rgba(255,123,86,.18),transparent 26%),radial-gradient(circle at 84% 70%,rgba(74,143,216,.18),transparent 30%),rgba(16,21,27,.85)}
-.stack-box{border:1px solid var(--gold);border-radius:20px;padding:24px;background:rgba(217,181,109,.08);margin:32px 0}
-.stack-item{font-size:1.05rem;padding:8px 0;border-bottom:1px solid var(--line)}.stack-item:last-child{border:none;font-weight:700;color:var(--gold)}
+:root{
+  --black:#050607;
+  --panel:rgba(16,21,27,.72);
+  --panel2:rgba(23,29,37,.88);
+  --white:#f4f1e8;
+  --muted:#aeb6bd;
+  --line:rgba(244,241,232,.16);
+  --blue:#2f5daa;
+  --blue2:#4a8fd8;
+  --red:#e85b38;
+  --red2:#ff7b56;
+  --gold:#d9b56d;
+  --green:#9cc8b7;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  color:var(--white);
+  background:
+    radial-gradient(circle at 16% 14%,rgba(74,143,216,.18),transparent 28%),
+    radial-gradient(circle at 84% 14%,rgba(232,91,56,.12),transparent 24%),
+    linear-gradient(180deg,#050607 0%,#090d12 45%,#050607 100%);
+  line-height:1.5;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:34px 34px;
+  opacity:.34;
+  z-index:-1;
+}
+
+a{color:inherit}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  min-height:68px;
+  padding:0 6vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  border-bottom:1px solid var(--line);
+  background:rgba(5,6,7,.78);
+  backdrop-filter:blur(18px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  letter-spacing:.2em;
+  font-size:.86rem;
+  color:var(--white);
+  white-space:nowrap;
+}
+
+.mini-mark{width:34px;height:24px;position:relative}
+.mini-mark:before{
+  content:"";
+  position:absolute;
+  left:2px;
+  top:0;
+  width:4px;
+  height:24px;
+  border-radius:3px;
+  background:var(--white);
+}
+.mini-mark span{
+  position:absolute;
+  left:8px;
+  top:11px;
+  height:3px;
+  width:25px;
+  border-radius:99px;
+  transform-origin:left center;
+}
+.m-blue{background:var(--blue2)}
+.m-red-a{background:var(--red2);transform:rotate(-28deg)}
+.m-red-b{background:var(--red2);transform:rotate(28deg)}
+
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:.75rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin-left:18px;
+}
+nav a:hover{color:var(--white)}
+
+main{
+  width:min(1180px,88vw);
+  margin:0 auto;
+}
+
+section{
+  padding:50px 0;
+  border-top:1px solid var(--line);
+}
+
+.hero{
+  min-height:auto;
+  border-top:0;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:28px;
+  align-items:center;
+  padding-top:38px;
+  padding-bottom:44px;
+}
+
+.hero-copy{
+  max-width:980px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.hero-copy .lead{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.hero-copy .buttons{
+  justify-content:center;
+}
+
+.eyebrow{
+  color:var(--gold);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size:.72rem;
+  font-weight:700;
+  margin-bottom:16px;
+}
+
+h1{
+  font-size:clamp(3.5rem,7vw,6.8rem);
+  line-height:.9;
+  letter-spacing:-.07em;
+  margin:0 0 20px;
+  font-weight:750;
+}
+
+h2{
+  font-size:clamp(2rem,4.3vw,4rem);
+  line-height:1;
+  letter-spacing:-.05em;
+  margin:0 0 16px;
+  font-weight:750;
+}
+
+h3{
+  margin:0 0 8px;
+  font-size:1.1rem;
+}
+
+p{
+  margin:0 0 14px;
+  color:var(--muted);
+}
+
+.lead{
+  max-width:760px;
+  font-size:1.08rem;
+  line-height:1.55;
+}
+
+.beta-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:18px;
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgba(16,21,27,.66);
+  color:var(--muted);
+  font-size:.74rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.beta-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--red2);
+  box-shadow:0 0 18px rgba(255,123,86,.75);
+}
+
+.buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  padding:0 18px;
+  border-radius:999px;
+  border:1px solid var(--gold);
+  background:rgba(217,181,109,.1);
+  color:var(--white);
+  text-decoration:none;
+  font-weight:700;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  background:rgba(217,181,109,.16);
+}
+
+.btn.secondary{
+  border-color:var(--line);
+  background:var(--panel);
+}
+
+.logo-stage{
+  width:100%;
+  min-height:310px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 18% 24%,rgba(74,143,216,.18),transparent 30%),
+    radial-gradient(circle at 82% 74%,rgba(232,91,56,.14),transparent 30%),
+    rgba(16,21,27,.62);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.mark{
+  position:relative;
+  width:240px;
+  height:160px;
+}
+
+.source-bar{
+  position:absolute;
+  left:24px;
+  top:22px;
+  width:12px;
+  height:116px;
+  border-radius:8px;
+  background:var(--white);
+}
+
+.beam-red-top,
+.beam-blue,
+.beam-red-bottom{
+  position:absolute;
+  left:42px;
+  top:78px;
+  width:166px;
+  height:10px;
+  border-radius:99px;
+  transform-origin:left center;
+}
+
+.beam-red-top{background:var(--red2);transform:rotate(-25deg)}
+.beam-blue{background:var(--blue2)}
+.beam-red-bottom{background:var(--red2);transform:rotate(25deg)}
+.origin-glow{
+  position:absolute;
+  left:30px;
+  top:68px;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:rgba(244,241,232,.25);
+  box-shadow:0 0 40px rgba(244,241,232,.22);
+}
+
+.logo-word{
+  font-size:2.2rem;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+
+.logo-sub{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:.72rem;
+  letter-spacing:.22em;
+}
+
+.split{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:42px;
+  align-items:start;
+}
+
+.statement{
+  font-size:clamp(2rem,4.5vw,4.1rem);
+  line-height:1.05;
+  letter-spacing:-.045em;
+  color:var(--white);
+}
+
+.accent{color:var(--gold)}
+
+.compare{
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+  background:var(--panel);
+}
+
+.compare-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--line);
+}
+
+.compare-row:first-child{border-top:0}
+
+.compare-cell{
+  padding:17px 20px;
+}
+
+.compare-cell+ .compare-cell{
+  border-left:1px solid var(--line);
+}
+
+.compare-label{
+  margin-bottom:4px;
+  color:var(--gold);
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.questions{
+  display:grid;
+  gap:10px;
+}
+
+.question{
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--panel);
+  font-size:1.08rem;
+  font-weight:700;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.card{
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:linear-gradient(180deg,var(--panel2),var(--panel));
+}
+
+.architecture{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+
+.architecture .card{
+  min-height:190px;
+}
+
+.layer{
+  display:block;
+  margin-bottom:10px;
+  color:var(--gold);
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.mode-stack{
+  display:grid;
+  gap:12px;
+}
+
+.mode{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:20px;
+  padding:18px 20px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--panel);
+}
+
+.mode-name{
+  color:var(--gold);
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+code{
+  color:var(--white);
+  background:rgba(244,241,232,.08);
+  border:1px solid var(--line);
+  padding:3px 7px;
+  border-radius:7px;
+}
+
+.download-strip{padding-top:44px}
+
+.downloads{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:14px;
+  margin-top:20px;
+}
+
+.download{
+  text-decoration:none;
+  color:var(--white);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  background:var(--panel);
+  transition:all .18s;
+}
+
+.download:hover{
+  transform:translateY(-3px);
+  border-color:var(--gold);
+}
+
+.download.primary{
+  grid-column:span 2;
+  background:
+    radial-gradient(circle at 18% 25%,rgba(255,123,86,.18),transparent 26%),
+    radial-gradient(circle at 84% 70%,rgba(74,143,216,.18),transparent 30%),
+    rgba(16,21,27,.85);
+}
+
+.download strong{display:block}
+.download small{color:var(--muted)}
+
+
+.stack-box{
+  border:1px solid var(--gold);
+  border-radius:18px;
+  padding:20px;
+  background:rgba(217,181,109,.08);
+  margin:22px 0 14px;
+}
+
+.stack-item{
+  font-size:1rem;
+  padding:7px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.stack-item:last-child{
+  border:none;
+  font-weight:700;
+  color:var(--gold);
+}
+
+.library-list{
+  display:grid;
+  gap:12px;
+}
+
+.library-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px;
+  align-items:center;
+  padding:17px 18px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:var(--panel);
+}
+
+.library-item p{margin:0}
+.library-link{
+  color:var(--gold);
+  text-decoration:none;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.step-list{
+  display:grid;
+  gap:10px;
+  counter-reset:steps;
+}
+
+.step{
+  position:relative;
+  padding:16px 18px 16px 58px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--panel);
+}
+
+.step:before{
+  counter-increment:steps;
+  content:counter(steps);
+  position:absolute;
+  left:18px;
+  top:14px;
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--gold);
+  border-radius:50%;
+  color:var(--gold);
+  font-weight:700;
+}
+
+.identity-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.identity-card{
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--panel);
+}
+
+.identity-card>strong{
+  color:var(--gold);
+  font-size:.72rem;
+  letter-spacing:.16em;
+}
+
+.final-box{
+  padding:24px;
+  border:1px solid var(--gold);
+  border-radius:20px;
+  background:rgba(217,181,109,.06);
+}
+
+.dependency{
+  display:grid;
+  grid-template-columns:repeat(7,auto);
+  gap:12px;
+  align-items:center;
+  justify-content:center;
+  margin:24px 0;
+  overflow-x:auto;
+}
+
+.node{
+  min-width:140px;
+  padding:14px;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--panel);
+  font-weight:700;
+}
+
+.arrow{
+  color:var(--gold);
+  font-weight:800;
+}
+
+.closing-lines{
+  margin-top:22px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  color:var(--white);
+  font-size:1.15rem;
+  line-height:1.55;
+}
+
+.closing-lines strong{color:var(--gold)}
+
+footer{
+  width:min(1180px,88vw);
+  margin:0 auto;
+  padding:28px 0 38px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:.86rem;
+}
+
+.footer-grid{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.footer-links{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.footer-links a{
+  color:var(--muted);
+  text-decoration:none;
+}
+
+.footer-links a:hover{color:var(--white)}
+
+@media(max-width:920px){
+  nav{display:none}
+  .split,
+  .release-box,
+  .identity-grid{
+    grid-template-columns:1fr;
+  }
+  .cards,
+  .architecture{
+    grid-template-columns:1fr 1fr;
+  }
+  .logo-stage{min-height:280px}
+}
+
+@media(max-width:640px){
+  main,footer{width:min(92vw,1180px)}
+  header{padding:0 4vw}
+  section{padding:40px 0}
+  .hero{min-height:auto;padding-top:40px;padding-bottom:40px}
+  .cards,
+  .architecture{
+    grid-template-columns:1fr;
+  }
+  .compare-row{
+    grid-template-columns:1fr;
+  }
+  .compare-cell+ .compare-cell{
+    border-left:0;
+    border-top:1px solid var(--line);
+  }
+  .download.primary{grid-column:span 1}
+  .mode{grid-template-columns:1fr;gap:6px}
+  .library-item{grid-template-columns:1fr}
+  .dependency{justify-content:start}
+}
 </style>
 </head>
+
 <body>
 <header>
-  <div class="brand"><div class="mini-mark"><span class="m-red-a"></span><span class="m-blue"></span><span class="m-red-b"></span></div>ELE BETA</div>
+  <div class="brand">
+    <div class="mini-mark">
+      <span class="m-red-a"></span>
+      <span class="m-blue"></span>
+      <span class="m-red-b"></span>
+    </div>
+    ELE BETA
+  </div>
+
   <nav>
-    <a href="#library">Library</a>
-    <a href="#stack">Recommended Stack</a>
-    <a href="#what">What Is ELE</a>
-    <a href="#how">How to Use</a>
-    <a href="#cycle">Cycle</a>
-    <a href="#limits">Limits</a>
+    <a href="#what">What ELE Does</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#installation">Installation</a>
+    <a href="#how">How It Is Used</a>
+    <a href="support.html">Support</a>
   </nav>
 </header>
 
 <main>
 <section class="hero" id="top">
-  <div>
-    <div class="beta-pill"><span class="beta-dot"></span>Architecture Under Active Testing</div>
-    <div class="eyebrow">Emergency Logic Engine</div>
-    <h1>Organize uncertainty before solving problems.</h1>
-    <p class="lead">ELE is an experimental procedural architecture for AI. It sits on top of AI, engages on command, and applies Emergency Management logic to help you find the procedural minimum.</p>
-    <div class="buttons"><a class="btn" href="#library">Open Library</a><a class="btn secondary" href="installation.html">Installation Guide</a></div>
+  <div class="logo-stage" aria-label="ELE logo mark">
+    <div class="mark">
+      <div class="source-bar"></div>
+      <div class="beam-red-top"></div>
+      <div class="beam-blue"></div>
+      <div class="beam-red-bottom"></div>
+      <div class="origin-glow"></div>
+    </div>
+    <div class="logo-word">ELE</div>
+    <div class="logo-sub">EMERGENCY LOGIC ENGINE</div>
   </div>
-  <div class="logo-stage" aria-label="ELE logo mark"><div class="mark"><div class="source-bar"></div><div class="beam-red-top"></div><div class="beam-blue"></div><div class="beam-red-bottom"></div><div class="origin-glow"></div></div><div class="logo-word">ELE</div><div class="logo-sub">EMERGENCY LOGIC ENGINE</div></div>
+
+  <div class="hero-copy">
+    <div class="beta-pill">
+      <span class="beta-dot"></span>
+      Architecture Under Active Testing
+    </div>
+
+    <div class="eyebrow">Emergency Logic Engine</div>
+    <h1>Transpose General AI Logic to Emergency Logic.</h1>
+
+    <p class="lead">
+      ELE is a logic engine that operates on top of General AI.
+      It applies the procedural logic used by emergency operators.
+      Default AI expands. Emergency Logic condenses.
+    </p>
+
+    <div class="buttons">
+      <a class="btn" href="#library">Open Library</a>
+      <a class="btn secondary" href="#how">See How ELE Is Used</a>
+      <a class="btn secondary" href="support.html">Support ELE</a>
+    </div>
+  </div>
+</section>
+
+<section id="what">
+  <div class="split">
+    <div>
+      <div class="eyebrow">What ELE Does</div>
+      <h2>Emergency operators condense conditions into movement.</h2>
+    </div>
+
+    <div>
+      <p>
+        Emergency managers solve problems differently. They identify the condition,
+        determine ownership, establish priorities, isolate bottlenecks, and locate
+        the next procedural minimum.
+      </p>
+
+      <p class="statement">
+        ELE applies <span class="accent">Emergency Logic</span> to General AI.
+      </p>
+    </div>
+  </div>
 </section>
 
 <section class="download-strip" id="library">
   <div class="eyebrow">ELE Beta Library</div>
-  <h2>Open the architecture. Test the system.</h2>
-  <p>Archive.org is the public ELE library. Download the files below and follow the recommended stack order.</p>
+  <h2>Open the architecture.</h2>
 
   <div class="downloads">
     <a class="download primary" href="https://archive.org/details/ele-beta-0.0-general-map" target="_blank" rel="noopener">
       <strong>↓ Download All Core Files</strong>
-      <small>Full Core Archive Library (Engine, Map, Logic)</small>
+      <small>Engine Kernel, General Map, Doctrine Logic</small>
     </a>
 
-    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BEngine_Kernel%5D.pdf" target="_blank">
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BEngine_Kernel%5D.pdf" target="_blank" rel="noopener">
       <strong>Engine Kernel 0.0</strong>
     </a>
 
-    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BGENERAL%20MAP%5D.pdf" target="_blank">
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BGENERAL%20MAP%5D.pdf" target="_blank" rel="noopener">
       <strong>General Map 0.0</strong>
     </a>
 
-    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BLOGIC%5D.pdf" target="_blank">
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BLOGIC%5D.pdf" target="_blank" rel="noopener">
       <strong>Doctrine Logic 0.0</strong>
     </a>
 
-    <a class="download" href="https://archive.org/details/eli-ele-beta-0.1-bootloader-prompt" target="_blank">
+    <a class="download" href="https://archive.org/details/eli-ele-beta-0.1-bootloader-prompt" target="_blank" rel="noopener">
       <strong>Bootloader Prompt V0.1</strong>
-      <small>← Most Recent</small>
+      <small>Most recent</small>
     </a>
 
-    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/CONTROLS_TEXT.pdf" target="_blank">
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/CONTROLS_TEXT.pdf" target="_blank" rel="noopener">
       <strong>Controls</strong>
     </a>
   </div>
 </section>
 
-<!-- MOST RECENT STACK -->
+<section>
+  <div class="eyebrow">General Logic and Emergency Logic</div>
+  <h2>Default AI expands. Emergency Logic condenses.</h2>
+
+  <div class="compare">
+    <div class="compare-row">
+      <div class="compare-cell">
+        <div class="compare-label">Default AI</div>
+        Explores possibilities and alternatives.
+      </div>
+      <div class="compare-cell">
+        <div class="compare-label">Emergency Logic</div>
+        Isolates the active condition.
+      </div>
+    </div>
+
+    <div class="compare-row">
+      <div class="compare-cell">Generates options.</div>
+      <div class="compare-cell">Identifies bottlenecks.</div>
+    </div>
+
+    <div class="compare-row">
+      <div class="compare-cell">Seeks a broad answer.</div>
+      <div class="compare-cell">Finds the next procedural minimum.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Five Operational Questions</div>
+  <h2>The system compresses around five questions.</h2>
+
+  <div class="questions">
+    <div class="question">What is the condition?</div>
+    <div class="question">Who owns movement?</div>
+    <div class="question">What are the priorities?</div>
+    <div class="question">What bottlenecks exist?</div>
+    <div class="question">What is the next available lever?</div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Procedural Minimums</div>
+  <h2>Emergency Logic advances one valid movement at a time.</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Controlled procedure</h3>
+      <p>Movement occurs through verified conditions and the next allowable action.</p>
+    </div>
+
+    <div class="card">
+      <h3>Operational ownership</h3>
+      <p>The system identifies who can move the condition and where movement stops.</p>
+    </div>
+
+    <div class="card">
+      <h3>Minimum safe movement</h3>
+      <p>ELE reduces the field until the next procedural lever becomes visible.</p>
+    </div>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="eyebrow">ELE Architecture</div>
+  <h2>Map. Logic Engine. Kernel. Bootloader.</h2>
+
+  <div class="architecture">
+    <div class="card">
+      <span class="layer">Foundation</span>
+      <h3>General Map</h3>
+      <p>Defines the structure of Emergency Logic.</p>
+    </div>
+
+    <div class="card">
+      <span class="layer">Logic</span>
+      <h3>Logic Engine</h3>
+      <p>Turns the Map into a repeatable method of reasoning.</p>
+    </div>
+
+    <div class="card">
+      <span class="layer">Operation</span>
+      <h3>Kernel</h3>
+      <p>Governs how ELE interprets and moves a condition.</p>
+    </div>
+
+    <div class="card">
+      <span class="layer">Activation</span>
+      <h3>Bootloader</h3>
+      <p>Inserted as a prompt to activate the Kernel.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cycle">
+  <div class="eyebrow">Mode Cycling</div>
+  <h2>Cycle between Source, ELI, and ELE.</h2>
+
+  <div class="mode-stack">
+    <div class="mode">
+      <div class="mode-name">SOURCE</div>
+      <div>
+        General AI for open exploration, generation, and broad reasoning.
+        <br><code>EXIT ELE</code>
+      </div>
+    </div>
+
+    <div class="mode">
+      <div class="mode-name">ELI</div>
+      <div>
+        Isolation interface for exposing, framing, and testing the condition.
+        <br><code>ENTER ELI</code>
+      </div>
+    </div>
+
+    <div class="mode">
+      <div class="mode-name">ELE</div>
+      <div>
+        Emergency Logic for condensing the condition and locating movement.
+        <br><code>ENTER ELE</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
 <section id="stack">
   <div class="eyebrow">Recommended Stack</div>
-  <h2>Most Accurate Upload Sequence</h2>
-  <p>Load these documents in this order for the current best performance:</p>
-  
+  <h2>Current upload sequence</h2>
+
   <div class="stack-box">
     <div class="stack-item">1. Engine Kernel 0.0</div>
     <div class="stack-item">2. General Map 0.0</div>
     <div class="stack-item">3. Doctrine Logic 0.0</div>
-    <div class="stack-item">4. <strong>Bootloader Prompt V0.1</strong> ← Most Recent</div>
+    <div class="stack-item">4. Bootloader Prompt V0.1</div>
   </div>
-  <p><small>Start with the Bootloader V0.1 prompt in your AI session, then declare your condition.</small></p>
+
+  <p><small>Load the stack, insert the Bootloader, then declare the condition.</small></p>
 </section>
 
-<section id="what">
+<section id="installation">
+  <div class="eyebrow">Installation</div>
+  <h2>Load the architecture. Activate the Kernel.</h2>
+
+  <div class="step-list">
+    <div class="step">Open a compatible General AI.</div>
+    <div class="step">Load the Engine Kernel, General Map, and Doctrine Logic.</div>
+    <div class="step">Insert the Bootloader Prompt.</div>
+    <div class="step">Activate the Bootloader.</div>
+    <div class="step">Declare the condition and enter ELI or ELE.</div>
+  </div>
+</section>
+
+<section id="testing">
+  <div class="eyebrow">Public Beta Testing</div>
+  <h2>Test the system. Document the result.</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Test</h3>
+      <p>Apply ELE to real conditions, simulations, and procedural systems.</p>
+    </div>
+
+    <div class="card">
+      <h3>Document</h3>
+      <p>Record where the system condensed the condition and where it failed.</p>
+    </div>
+
+    <div class="card">
+      <h3>Submit</h3>
+      <p>Send findings to submissions@emergencylogic.org.</p>
+    </div>
+  </div>
+</section>
+
+<section id="limits">
   <div class="eyebrow">What ELE Is and Is Not</div>
+
   <div class="identity-grid">
     <div class="identity-card">
       <strong>ELE IS</strong>
-      <h3>A procedural architecture</h3>
-      <p>Sits on top of AI • Applies Emergency Management logic • Organizes conditions • Finds the next procedural minimum</p>
+      <h3>A procedural operating layer</h3>
+      <p>
+        It sits on top of General AI and transposes default reasoning into Emergency Logic.
+      </p>
     </div>
+
     <div class="identity-card">
       <strong>ELE IS NOT</strong>
-      <h3>An AI chatbot</h3>
-      <p>Not a replacement for AI • Does not give legal/medical advice • Does not assign blame or make decisions for you</p>
+      <h3>A replacement for authority or judgment</h3>
+      <p>
+        It does not replace field verification, professional review, or official command.
+      </p>
     </div>
   </div>
 </section>
 
 <section id="how">
-  <div class="eyebrow">How to Use</div>
-  <h2>Quick Start</h2>
-  <p>1. Download the stack above.<br>
-     2. Paste the Bootloader V0.1 prompt into your AI chat.<br>
-     3. Declare your role and condition.<br>
-     4. Type <code>ENTER ELE</code> to activate.</p>
+  <div class="eyebrow">How ELE Is Used</div>
+  <h2>ELE operates on top of General AI.</h2>
+
+  <p>
+    The host may be GPT, Claude, Gemini, Grok, or another compatible model.
+    General AI remains the source environment. ELE changes the logic applied inside it.
+  </p>
+
+  <div class="final-box">
+    <div class="dependency">
+      <div class="node">GENERAL MAP</div>
+      <div class="arrow">→</div>
+      <div class="node">LOGIC ENGINE</div>
+      <div class="arrow">→</div>
+      <div class="node">KERNEL</div>
+      <div class="arrow">→</div>
+      <div class="node">BOOTLOADER</div>
+    </div>
+
+    <div class="identity-grid">
+      <div class="identity-card">
+        <h3>The General Map</h3>
+        <p>Defines the structure of Emergency Logic.</p>
+      </div>
+
+      <div class="identity-card">
+        <h3>The Logic Engine</h3>
+        <p>Applies the relationships contained in the Map.</p>
+      </div>
+
+      <div class="identity-card">
+        <h3>The Kernel</h3>
+        <p>Contains the operating rules built from the Logic Engine.</p>
+      </div>
+
+      <div class="identity-card">
+        <h3>The Bootloader</h3>
+        <p>Is inserted as a prompt and activates the Kernel.</p>
+      </div>
+    </div>
+
+    <div class="closing-lines">
+      <div><strong>The Map</strong> defines the structure.</div>
+      <div><strong>The Logic Engine</strong> applies the structure.</div>
+      <div><strong>The Kernel</strong> governs the operation.</div>
+      <div><strong>The Bootloader</strong> activates the Kernel.</div>
+      <div><strong>The operator</strong> cycles between Source, ELI, and ELE.</div>
+    </div>
+  </div>
 </section>
 
-<section id="cycle">
-  <div class="eyebrow">Mode Cycling</div>
-  <h2>Cycle between modes</h2>
-  <p><strong>SOURCE</strong> → <strong>ELI</strong> → <strong>ELE</strong> → <strong>EXIT ELE</strong></p>
-</section>
+<section>
+  <div class="eyebrow">Support</div>
+  <h2>Support the public beta.</h2>
+  <p>
+    Support helps preserve the archive, maintain distribution, continue testing,
+    and develop the next release.
+  </p>
 
-<section id="statement">
-  <p class="statement">AI expands. ELI isolates. ELE organizes. The pilot advances.</p>
+  <div class="buttons">
+    <a class="btn" href="support.html">Open Support Page</a>
+    <a class="btn secondary" href="mailto:contact@emergencylogic.org">Contact ELE</a>
+    <a class="btn secondary" href="mailto:submissions@emergencylogic.org">Submit Findings</a>
+  </div>
 </section>
 </main>
 
-<footer><p>Emergency Logic Engine Beta • Follow the Recommended Stack</p></footer>
+<footer>
+  <div class="footer-grid">
+    <div>Emergency Logic Engine Beta</div>
+
+    <div class="footer-links">
+      <a href="mailto:contact@emergencylogic.org">contact@emergencylogic.org</a>
+      <a href="mailto:submissions@emergencylogic.org">submissions@emergencylogic.org</a>
+      <a href="support.html">Support</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
