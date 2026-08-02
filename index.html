@@ -651,8 +651,102 @@ footer{
 
 .footer-links a:hover{color:var(--white)}
 
+
+.download-intro{
+  max-width:760px;
+}
+
+.downloads{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin-top:22px;
+}
+
+.download{
+  min-height:168px;
+  display:flex;
+  flex-direction:column;
+  text-decoration:none;
+  color:var(--white);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:20px;
+  background:linear-gradient(180deg,var(--panel2),var(--panel));
+  transition:all .18s;
+}
+
+.download:hover{
+  transform:translateY(-3px);
+  border-color:var(--gold);
+}
+
+.file-icon{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  margin-bottom:18px;
+  border-radius:11px;
+  background:var(--red2);
+  color:var(--white);
+  font-size:.74rem;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+
+.download.bootloader .file-icon{
+  background:var(--blue2);
+}
+
+.download p{
+  margin:0;
+  font-size:.9rem;
+}
+
+.download small{
+  display:block;
+  margin-top:auto;
+  padding-top:12px;
+  color:var(--gold);
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.activation-demo{
+  margin-top:30px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#050607;
+  box-shadow:0 28px 90px rgba(0,0,0,.28);
+}
+
+.activation-demo img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.activation-caption{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:.88rem;
+  text-align:center;
+}
+
+.installation-note{
+  margin-top:16px;
+  padding:16px 18px;
+  border-left:3px solid var(--gold);
+  background:rgba(217,181,109,.06);
+  color:var(--muted);
+}
+
 @media(max-width:920px){
   nav{display:none}
+  .downloads{grid-template-columns:repeat(2,minmax(0,1fr))}
   .split,
   .release-box,
   .identity-grid{
@@ -666,6 +760,7 @@ footer{
 }
 
 @media(max-width:640px){
+  .downloads{grid-template-columns:1fr}
   main,footer{width:min(92vw,1180px)}
   header{padding:0 4vw}
   section{padding:40px 0}
@@ -701,42 +796,23 @@ footer{
   </div>
 
   <nav>
-    <a href="#what">What ELE Does</a>
-    <a href="#architecture">Architecture</a>
+    <a href="#library">Downloads</a>
     <a href="#installation">Installation</a>
     <a href="#how">How It Is Used</a>
-    <a href="support.html">Support</a>
+    <a href="support.html">Contact / Support / Subscribe</a>
   </nav>
 </header>
 
 <main>
-<section class="hero" id="top">
-  <div class="logo-stage" aria-label="ELE logo mark">
-    <div class="mark">
-      <div class="source-bar"></div>
-      <div class="beam-red-top"></div>
-      <div class="beam-blue"></div>
-      <div class="beam-red-bottom"></div>
-      <div class="origin-glow"></div>
-    </div>
-    <div class="logo-word">ELE</div>
-    <div class="logo-sub">EMERGENCY LOGIC ENGINE</div>
-  </div>
 
+<section class="hero" id="top">
   <div class="hero-copy">
     <div class="beta-pill">
       <span class="beta-dot"></span>
       Architecture Under Active Testing
     </div>
 
-    <div class="eyebrow">Emergency Logic Engine</div>
     <h1>Transpose General AI Logic to Emergency Logic.</h1>
-
-    <p class="lead">
-      ELE is a logic engine that operates on top of General AI.
-      It applies the procedural logic used by emergency operators.
-      Default AI expands. Emergency Logic condenses.
-    </p>
 
     <div class="buttons hero-action">
       <a class="btn hero-main-btn" href="support.html">Contact / Support / Subscribe</a>
@@ -744,192 +820,52 @@ footer{
   </div>
 </section>
 
-<section id="what">
-  <div class="split">
-    <div>
-      <div class="eyebrow">What ELE Does</div>
-      <h2>Emergency operators condense conditions into movement.</h2>
-    </div>
-
-    <div>
-      <p>
-        Emergency managers solve problems differently. They identify the condition,
-        determine ownership, establish priorities, isolate bottlenecks, and locate
-        the next procedural minimum.
-      </p>
-
-      <p class="statement">
-        ELE applies <span class="accent">Emergency Logic</span> to General AI.
-      </p>
-    </div>
-  </div>
-</section>
-
 <section class="download-strip" id="library">
-  <div class="eyebrow">ELE Beta Library</div>
-  <h2>Open the architecture.</h2>
+  <div class="eyebrow">Download the Architecture</div>
+  <h2>Four files initialize ELE inside ChatGPT.</h2>
+
+  <p class="download-intro">
+    Download each file individually. The Engine Kernel, General Map, and Doctrine Logic
+    establish the architecture. The GPT Bootloader activates the Kernel inside ChatGPT.
+  </p>
 
   <div class="downloads">
-<a class="download" href="https://pub-e007f08c16dc43158ae4434586d85b5f.r2.dev/%5BELE_BETA%5D%5B0.0%5D%5BEngine_Kernel%5D.pdf" target="_blank" rel="noopener">
-      <strong>Engine Kernel 0.0</strong>
+    <a class="download" href="https://pub-e007f08c16dc43158ae4434586d85b5f.r2.dev/%5BELE_BETA%5D%5B0.0%5D%5BEngine_Kernel%5D.pdf" target="_blank" rel="noopener">
+      <div class="file-icon">PDF</div>
+      <h3>Engine Kernel</h3>
+      <p>Provides the operating rules used by ELE.</p>
     </a>
 
     <a class="download" href="https://pub-e007f08c16dc43158ae4434586d85b5f.r2.dev/%5BELE_BETA%5D%5B0.0%5D%5BGENERAL%20MAP%5D.pdf" target="_blank" rel="noopener">
-      <strong>General Map 0.0</strong>
+      <div class="file-icon">PDF</div>
+      <h3>General Map</h3>
+      <p>Defines the procedural structure of Emergency Logic.</p>
     </a>
 
     <a class="download" href="https://pub-e007f08c16dc43158ae4434586d85b5f.r2.dev/%5BELE_BETA%5D%5B0.0%5D%5BLOGIC%5D.pdf" target="_blank" rel="noopener">
-      <strong>Doctrine Logic 0.0</strong>
+      <div class="file-icon">PDF</div>
+      <h3>Doctrine Logic</h3>
+      <p>Applies Emergency Logic to the active condition.</p>
     </a>
 
-    <a class="download" href="https://pub-e007f08c16dc43158ae4434586d85b5f.r2.dev/%5BELI%26ELE_BETA%5D%5B0.1%5D%5BBootloader%20Prompt%5D.pdf" target="_blank" rel="noopener">
-      <strong>Bootloader Prompt V0.1</strong>
-      <small>Most recent</small>
+    <a class="download bootloader" href="https://pub-e007f08c16dc43158ae4434586d85b5f.r2.dev/Bootloader%201.0%20%5BGPT%5D.pdf" target="_blank" rel="noopener">
+      <div class="file-icon">GPT</div>
+      <h3>GPT Bootloader 1.0</h3>
+      <p>Activates the Kernel inside OpenAI ChatGPT.</p>
+      <small>Current Supported Host</small>
     </a>
-</div>
-</section>
-
-<section>
-  <div class="eyebrow">General Logic and Emergency Logic</div>
-  <h2>Default AI expands. Emergency Logic condenses.</h2>
-
-  <div class="compare">
-    <div class="compare-row">
-      <div class="compare-cell">
-        <div class="compare-label">Default AI</div>
-        Explores possibilities and alternatives.
-      </div>
-      <div class="compare-cell">
-        <div class="compare-label">Emergency Logic</div>
-        Isolates the active condition.
-      </div>
-    </div>
-
-    <div class="compare-row">
-      <div class="compare-cell">Generates options.</div>
-      <div class="compare-cell">Identifies bottlenecks.</div>
-    </div>
-
-    <div class="compare-row">
-      <div class="compare-cell">Seeks a broad answer.</div>
-      <div class="compare-cell">Finds the next procedural minimum.</div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="eyebrow">Five Operational Questions</div>
-  <h2>The system compresses around five questions.</h2>
-
-  <div class="questions">
-    <div class="question">What is the condition?</div>
-    <div class="question">Who owns movement?</div>
-    <div class="question">What are the priorities?</div>
-    <div class="question">What bottlenecks exist?</div>
-    <div class="question">What is the next available lever?</div>
-  </div>
-</section>
-
-<section>
-  <div class="eyebrow">Procedural Minimums</div>
-  <h2>Emergency Logic advances one valid movement at a time.</h2>
-
-  <div class="cards">
-    <div class="card">
-      <h3>Controlled procedure</h3>
-      <p>Movement occurs through verified conditions and the next allowable action.</p>
-    </div>
-
-    <div class="card">
-      <h3>Operational ownership</h3>
-      <p>The system identifies who can move the condition and where movement stops.</p>
-    </div>
-
-    <div class="card">
-      <h3>Minimum safe movement</h3>
-      <p>ELE reduces the field until the next procedural lever becomes visible.</p>
-    </div>
-  </div>
-</section>
-
-<section id="architecture">
-  <div class="eyebrow">ELE Architecture</div>
-  <h2>Map. Logic Engine. Kernel. Bootloader.</h2>
-
-  <div class="architecture">
-    <div class="card">
-      <span class="layer">Foundation</span>
-      <h3>General Map</h3>
-      <p>Defines the structure of Emergency Logic.</p>
-    </div>
-
-    <div class="card">
-      <span class="layer">Logic</span>
-      <h3>Logic Engine</h3>
-      <p>Turns the Map into a repeatable method of reasoning.</p>
-    </div>
-
-    <div class="card">
-      <span class="layer">Operation</span>
-      <h3>Kernel</h3>
-      <p>Governs how ELE interprets and moves a condition.</p>
-    </div>
-
-    <div class="card">
-      <span class="layer">Activation</span>
-      <h3>Bootloader</h3>
-      <p>Inserted as a prompt to activate the Kernel.</p>
-    </div>
-  </div>
-</section>
-
-<section id="cycle">
-  <div class="eyebrow">Mode Cycling</div>
-  <h2>Cycle between Source, ELI, and ELE.</h2>
-
-  <div class="mode-stack">
-    <div class="mode">
-      <div class="mode-name">SOURCE</div>
-      <div>
-        General AI for open exploration, generation, and broad reasoning.
-        <br><code>EXIT ELE</code>
-      </div>
-    </div>
-
-    <div class="mode">
-      <div class="mode-name">ELI</div>
-      <div>
-        Isolation interface for exposing, framing, and testing the condition.
-        <br><code>ENTER ELI</code>
-      </div>
-    </div>
-
-    <div class="mode">
-      <div class="mode-name">ELE</div>
-      <div>
-        Emergency Logic for condensing the condition and locating movement.
-        <br><code>ENTER ELE</code>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-<section id="stack">
-  <div class="eyebrow">Recommended Stack</div>
-  <h2>Current upload sequence</h2>
-
-  <div class="stack-box">
-    <div class="stack-item">1. Engine Kernel 0.0</div>
-    <div class="stack-item">2. General Map 0.0</div>
-    <div class="stack-item">3. Doctrine Logic 0.0</div>
-    <div class="stack-item">4. Bootloader Prompt V0.1</div>
   </div>
 
-  <p><small>Load the stack, insert the Bootloader, then declare the condition.</small></p>
+  <div class="activation-demo">
+    <img
+      src="ele-chatgpt-activation.png"
+      alt="ELE architecture files loaded into ChatGPT with the Activate Kernel command and ELI initialization"
+    >
+  </div>
+
+  <p class="activation-caption">
+    Upload the three architecture PDFs, insert the GPT Bootloader prompt, and activate the Kernel.
+  </p>
 </section>
 
 <section id="installation">
@@ -937,13 +873,20 @@ footer{
   <h2>Load the architecture. Activate the Kernel.</h2>
 
   <div class="step-list">
-    <div class="step">Open a compatible General AI.</div>
-    <div class="step">Load the Engine Kernel, General Map, and Doctrine Logic.</div>
-    <div class="step">Insert the Bootloader Prompt.</div>
-    <div class="step">Activate the Bootloader.</div>
-    <div class="step">Declare the condition and enter ELI or ELE.</div>
+    <div class="step">Download all four files.</div>
+    <div class="step">Open a new ChatGPT conversation.</div>
+    <div class="step">Upload the Engine Kernel, General Map, and Doctrine Logic.</div>
+    <div class="step">Open the GPT Bootloader and copy its prompt into ChatGPT.</div>
+    <div class="step">Enter the command: <strong>Activate Kernel.</strong></div>
+    <div class="step">State who you are and describe the situation.</div>
+  </div>
+
+  <div class="installation-note">
+    After activation, ChatGPT begins with ELI initialization:
+    <strong>Who are you?</strong> and <strong>What is the situation?</strong>
   </div>
 </section>
+
 
 <section id="testing">
   <div class="eyebrow">Public Beta Testing</div>
