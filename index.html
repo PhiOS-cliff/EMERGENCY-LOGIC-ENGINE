@@ -744,6 +744,26 @@ footer{
   color:var(--muted);
 }
 
+
+.visual-section{
+  padding-top:46px;
+}
+
+.visual-panel{
+  margin-top:22px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#050607;
+  box-shadow:0 28px 90px rgba(0,0,0,.28);
+}
+
+.visual-panel img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
 @media(max-width:920px){
   nav{display:none}
   .downloads{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -798,7 +818,8 @@ footer{
   <nav>
     <a href="#library">Downloads</a>
     <a href="#installation">Installation</a>
-    <a href="#how">How It Is Used</a>
+    <a href="#architecture-overview">Architecture</a>
+    <a href="#what-ele-is">What ELE Is</a>
     <a href="support.html">Contact / Support / Subscribe</a>
   </nav>
 </header>
@@ -888,108 +909,37 @@ footer{
 </section>
 
 
-<section id="testing">
-  <div class="eyebrow">Public Beta Testing</div>
-  <h2>Test the system. Document the result.</h2>
+<section id="architecture-overview" class="visual-section">
+  <div class="eyebrow">How the ELE Architecture Works</div>
+  <h2>From foundation to activation.</h2>
 
-  <div class="cards">
-    <div class="card">
-      <h3>Test</h3>
-      <p>Apply ELE to real conditions, simulations, and procedural systems.</p>
-    </div>
-
-    <div class="card">
-      <h3>Document</h3>
-      <p>Record where the system condensed the condition and where it failed.</p>
-    </div>
-
-    <div class="card">
-      <h3>Submit</h3>
-      <p>Send findings to submissions@emergencylogic.org.</p>
-    </div>
+  <div class="visual-panel">
+    <img
+      src="ele-system-architecture.png"
+      alt="Diagram showing the ELE General Map, Logic Engine, Kernel, GPT Bootloader, and General AI working together"
+    >
   </div>
 </section>
 
-<section id="limits">
-  <div class="eyebrow">What ELE Is and Is Not</div>
+<section id="what-ele-is" class="visual-section">
+  <div class="eyebrow">What ELE Is</div>
+  <h2>General AI expands. Emergency Logic compresses.</h2>
 
-  <div class="identity-grid">
-    <div class="identity-card">
-      <strong>ELE IS</strong>
-      <h3>A procedural operating layer</h3>
-      <p>
-        It sits on top of General AI and transposes default reasoning into Emergency Logic.
-      </p>
-    </div>
-
-    <div class="identity-card">
-      <strong>ELE IS NOT</strong>
-      <h3>A replacement for authority or judgment</h3>
-      <p>
-        It does not replace field verification, professional review, or official command.
-      </p>
-    </div>
+  <div class="visual-panel">
+    <img
+      src="ele-what-is-ele.png"
+      alt="Diagram explaining how ELE transposes General AI reasoning into Emergency Logic"
+    >
   </div>
 </section>
 
-<section id="how">
-  <div class="eyebrow">How ELE Is Used</div>
-  <h2>ELE operates on top of General AI.</h2>
-
-  <p>
-    The host may be GPT, Claude, Gemini, Grok, or another compatible model.
-    General AI remains the source environment. ELE changes the logic applied inside it.
-  </p>
-
-  <div class="final-box">
-    <div class="dependency">
-      <div class="node">GENERAL MAP</div>
-      <div class="arrow">→</div>
-      <div class="node">LOGIC ENGINE</div>
-      <div class="arrow">→</div>
-      <div class="node">KERNEL</div>
-      <div class="arrow">→</div>
-      <div class="node">BOOTLOADER</div>
-    </div>
-
-    <div class="identity-grid">
-      <div class="identity-card">
-        <h3>The General Map</h3>
-        <p>Defines the structure of Emergency Logic.</p>
-      </div>
-
-      <div class="identity-card">
-        <h3>The Logic Engine</h3>
-        <p>Applies the relationships contained in the Map.</p>
-      </div>
-
-      <div class="identity-card">
-        <h3>The Kernel</h3>
-        <p>Contains the operating rules built from the Logic Engine.</p>
-      </div>
-
-      <div class="identity-card">
-        <h3>The Bootloader</h3>
-        <p>Is inserted as a prompt and activates the Kernel.</p>
-      </div>
-    </div>
-
-    <div class="closing-lines">
-      <div><strong>The Map</strong> defines the structure.</div>
-      <div><strong>The Logic Engine</strong> applies the structure.</div>
-      <div><strong>The Kernel</strong> governs the operation.</div>
-      <div><strong>The Bootloader</strong> activates the Kernel.</div>
-      <div><strong>The operator</strong> cycles between Source, ELI, and ELE.</div>
-    </div>
-  </div>
-</section>
-
-<section>
+<section id="support">
   <div class="eyebrow">Support</div>
-  <h2>Support the public beta.</h2>
+  <h2>Contact, support, and subscribe.</h2>
+
   <p>
-    Support helps preserve the archive, maintain distribution, continue testing,
-    and develop the next release.
+    Support helps preserve the public archive, maintain distribution,
+    continue testing, and develop the next release.
   </p>
 
   <div class="buttons">
@@ -998,6 +948,7 @@ footer{
     <a class="btn secondary" href="mailto:submissions@emergencylogic.org">Submit Findings</a>
   </div>
 </section>
+
 </main>
 
 <footer>
