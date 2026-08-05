@@ -82,6 +82,7 @@
       font-size: 0.88rem;
       font-weight: 700;
       letter-spacing: 0.18em;
+      text-decoration: none;
       text-transform: uppercase;
     }
 
@@ -100,7 +101,8 @@
     }
 
     nav a:hover,
-    nav a:focus {
+    nav a:focus,
+    nav a[aria-current="page"] {
       color: var(--text);
     }
 
@@ -328,6 +330,30 @@
       text-decoration: none;
     }
 
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus {
+      color: var(--text);
+    }
+
     @media (max-width: 720px) {
       header {
         align-items: flex-start;
@@ -363,15 +389,16 @@
 
 <body>
   <header>
-    <div class="brand">
+    <a class="brand" href="index.html" aria-label="Emergency Logic Engine home">
       Emergency Logic Engine
-    </div>
+    </a>
 
-    <nav>
+    <nav aria-label="Primary navigation">
       <a href="index.html">Home</a>
-      <a href="#support">Support</a>
-      <a href="#subscribe">Subscribe</a>
-      <a href="#contact">Contact</a>
+      <a href="controls.html">Controls</a>
+      <a href="support.html#support" aria-current="page">Support</a>
+      <a href="support.html#subscribe">Subscribe</a>
+      <a href="support.html#contact">Contact</a>
     </nav>
   </header>
 
@@ -587,25 +614,17 @@
   </main>
 
   <footer>
-    <p>
-      <a href="index.html">
-        Return to Emergency Logic Engine
-      </a>
-    </p>
+    <div class="footer-grid">
+      <div>Emergency Logic Engine Beta</div>
 
-    <p>
-      Contact:
-      <a href="mailto:contact@emergencylogic.org">
-        contact@emergencylogic.org
-      </a>
-    </p>
-
-    <p>
-      Submissions:
-      <a href="mailto:submissions@emergencylogic.org">
-        submissions@emergencylogic.org
-      </a>
-    </p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="controls.html">Controls</a>
+        <a href="support.html#support">Support</a>
+        <a href="support.html#subscribe">Subscribe</a>
+        <a href="support.html#contact">Contact</a>
+      </div>
+    </div>
   </footer>
 
   <script>
