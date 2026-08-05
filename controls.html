@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controls | Emergency Logic Engine</title>
+  <meta name="description" content="Learn how to activate, operate, exit, and apply the core controls of the Emergency Logic Engine inside ChatGPT.">
+
+  <style>
+    :root{
+      --black:#050607;
+      --panel:rgba(16,21,27,.78);
+      --panel2:rgba(23,29,37,.92);
+      --white:#f4f1e8;
+      --muted:#aeb6bd;
+      --line:rgba(244,241,232,.16);
+      --blue:#4a8fd8;
+      --red:#ff6546;
+      --gold:#d9a64d;
+      --orange:#ff8c2f;
+      --green:#43c5ad;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      color:var(--white);
+      background:
+        radial-gradient(circle at 14% 10%,rgba(74,143,216,.16),transparent 30%),
+        radial-gradient(circle at 86% 10%,rgba(255,101,70,.12),transparent 26%),
+        linear-gradient(180deg,#050607 0%,#080c11 48%,#050607 100%);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      line-height:1.55;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+      background-size:34px 34px;
+      opacity:.34;
+    }
+
+    a{color:inherit}
+    img{display:block;max-width:100%}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      min-height:68px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      padding:0 6vw;
+      border-bottom:1px solid var(--line);
+      background:rgba(5,6,7,.86);
+      backdrop-filter:blur(18px);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:13px;
+      color:var(--white);
+      font-size:.86rem;
+      font-weight:700;
+      letter-spacing:.2em;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+
+    .mini-mark{position:relative;width:34px;height:24px}
+    .mini-mark::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:2px;
+      width:4px;
+      height:24px;
+      border-radius:3px;
+      background:var(--white);
+    }
+
+    .mini-mark span{
+      position:absolute;
+      top:11px;
+      left:8px;
+      width:25px;
+      height:3px;
+      border-radius:99px;
+      transform-origin:left center;
+    }
+
+    .mark-blue{background:var(--blue)}
+    .mark-red-top{background:var(--red);transform:rotate(-28deg)}
+    .mark-red-bottom{background:var(--red);transform:rotate(28deg)}
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    nav a{
+      color:var(--muted);
+      font-size:.75rem;
+      letter-spacing:.13em;
+      text-decoration:none;
+      text-transform:uppercase;
+    }
+
+    nav a:hover,
+    nav a:focus,
+    nav a[aria-current="page"]{color:var(--white)}
+
+    main{
+      width:min(1180px,88vw);
+      margin:0 auto;
+    }
+
+    section{
+      padding:54px 0;
+      border-top:1px solid var(--line);
+    }
+
+    .hero{
+      padding-top:70px;
+      padding-bottom:54px;
+      border-top:0;
+    }
+
+    .eyebrow{
+      margin-bottom:14px;
+      color:var(--gold);
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+
+    h1,h2,h3{margin-top:0}
+
+    h1{
+      max-width:960px;
+      margin-bottom:20px;
+      font-size:clamp(3.7rem,8vw,7rem);
+      font-weight:760;
+      line-height:.9;
+      letter-spacing:-.07em;
+    }
+
+    h2{
+      margin-bottom:16px;
+      font-size:clamp(2.2rem,4.6vw,4.2rem);
+      font-weight:750;
+      line-height:1;
+      letter-spacing:-.05em;
+    }
+
+    h3{
+      margin-bottom:8px;
+      font-size:1.12rem;
+    }
+
+    p{
+      margin:0 0 14px;
+      color:var(--muted);
+    }
+
+    .lead{
+      max-width:820px;
+      color:var(--white);
+      font-size:clamp(1.12rem,2vw,1.38rem);
+    }
+
+    .status-line{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-top:24px;
+      padding:9px 13px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      background:rgba(16,21,27,.66);
+      font-size:.74rem;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .status-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 18px rgba(217,166,77,.72);
+    }
+
+    .visual-panel{
+      overflow:hidden;
+      margin-top:26px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:#050607;
+      box-shadow:0 28px 90px rgba(0,0,0,.3);
+    }
+
+    .visual-panel img{width:100%;height:auto}
+
+    .caption{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:.88rem;
+      text-align:center;
+    }
+
+    .command-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .command-card{
+      min-height:220px;
+      padding:21px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:linear-gradient(180deg,var(--panel2),var(--panel));
+    }
+
+    .command-card.core{border-color:rgba(217,166,77,.45)}
+    .command-card.orientation{border-color:rgba(74,143,216,.48)}
+    .command-card.emergency{border-color:rgba(255,101,70,.5)}
+    .command-card.source{border-color:rgba(67,197,173,.42)}
+
+    .command{
+      display:inline-block;
+      margin-bottom:18px;
+      padding:7px 10px;
+      border:1px solid currentColor;
+      border-radius:8px;
+      color:var(--gold);
+      background:rgba(255,255,255,.025);
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    .orientation .command{color:var(--blue)}
+    .emergency .command{color:var(--red)}
+    .source .command{color:var(--green)}
+
+    .command-card p{margin-bottom:0}
+
+    .flow{
+      display:grid;
+      grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;
+      align-items:center;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .flow-node{
+      min-height:106px;
+      display:grid;
+      place-items:center;
+      padding:17px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--panel);
+      text-align:center;
+      font-weight:700;
+    }
+
+    .flow-arrow{
+      color:var(--gold);
+      font-size:1.4rem;
+      font-weight:800;
+    }
+
+    .notice{
+      margin-top:22px;
+      padding:18px 20px;
+      border-left:3px solid var(--gold);
+      background:rgba(217,166,77,.07);
+      color:var(--muted);
+    }
+
+    .uno-header{
+      display:grid;
+      grid-template-columns:1fr .95fr;
+      gap:36px;
+      align-items:end;
+    }
+
+    .uno-ask{
+      padding:22px;
+      border:1px solid rgba(255,101,70,.5);
+      border-radius:18px;
+      background:
+        radial-gradient(circle at 82% 20%,rgba(255,101,70,.11),transparent 36%),
+        var(--panel);
+    }
+
+    .uno-ask strong{
+      display:block;
+      margin-bottom:8px;
+      color:var(--orange);
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+
+    .uno-ask p{
+      margin:0;
+      color:var(--white);
+      font-size:1.08rem;
+    }
+
+    .uno-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .uno-card{
+      padding:19px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--panel);
+    }
+
+    .uno-card strong{
+      display:block;
+      margin-bottom:7px;
+      color:var(--orange);
+    }
+
+    .return-list{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .return-item{
+      min-height:82px;
+      display:grid;
+      place-items:center;
+      padding:13px;
+      border:1px solid rgba(255,101,70,.38);
+      border-radius:13px;
+      background:rgba(255,101,70,.055);
+      color:var(--white);
+      text-align:center;
+      font-size:.86rem;
+      font-weight:700;
+    }
+
+    .support-box{
+      padding:26px;
+      border:1px solid var(--gold);
+      border-radius:20px;
+      background:rgba(217,166,77,.06);
+    }
+
+    .button{
+      display:inline-flex;
+      min-height:50px;
+      align-items:center;
+      justify-content:center;
+      margin-top:14px;
+      padding:0 22px;
+      border:1px solid var(--gold);
+      border-radius:999px;
+      color:var(--white);
+      background:rgba(217,166,77,.1);
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    .button:hover,
+    .button:focus{
+      transform:translateY(-2px);
+      background:rgba(217,166,77,.16);
+    }
+
+    footer{
+      width:min(1180px,88vw);
+      margin:0 auto;
+      padding:30px 0 40px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{
+      color:var(--muted);
+      text-decoration:none;
+    }
+
+    .footer-links a:hover{color:var(--white)}
+
+    @media(max-width:980px){
+      nav{display:none}
+      .command-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .uno-header{grid-template-columns:1fr}
+      .return-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .flow{grid-template-columns:1fr}
+      .flow-arrow{transform:rotate(90deg);text-align:center}
+    }
+
+    @media(max-width:640px){
+      main,footer{width:min(92vw,1180px)}
+      header{padding:0 4vw}
+      section{padding:42px 0}
+      .hero{padding-top:48px}
+      .command-grid,
+      .uno-grid,
+      .return-list{grid-template-columns:1fr}
+      .visual-panel{border-radius:16px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="brand" href="index.html">
+      <div class="mini-mark" aria-hidden="true">
+        <span class="mark-red-top"></span>
+        <span class="mark-blue"></span>
+        <span class="mark-red-bottom"></span>
+      </div>
+      ELE BETA
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="controls.html" aria-current="page">Controls</a>
+      <a href="support.html#support">Support</a>
+      <a href="support.html#subscribe">Subscribe</a>
+      <a href="support.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="eyebrow">ELE Controls</div>
+      <h1>Operate the system.</h1>
+
+      <p class="lead">
+        ELE is controlled through explicit commands. The operator activates the Kernel,
+        establishes identity and situation through ELI, enters Emergency Logic for
+        procedural compression, and returns to Source for normal General AI conversation.
+      </p>
+
+      <div class="status-line">
+        <span class="status-dot"></span>
+        Current supported host: OpenAI ChatGPT
+      </div>
+    </section>
+
+    <section id="quick-start">
+      <div class="eyebrow">Quick Start</div>
+      <h2>Activate the Kernel. Establish the situation.</h2>
+
+      <div class="visual-panel">
+        <img
+          src="ele-controls-interface.png"
+          alt="ELE interface showing Activate Kernel, ELI initialization, and Exit ELE or Enter Source"
+        >
+      </div>
+
+      <p class="caption">
+        Upload the architecture files, insert the GPT Bootloader, and issue the activation command.
+      </p>
+    </section>
+
+    <section id="commands">
+      <div class="eyebrow">Pilot Commands</div>
+      <h2>The four controls that move the session.</h2>
+
+      <div class="command-grid">
+        <article class="command-card core">
+          <div class="command">Activate Kernel</div>
+          <h3>Start the system</h3>
+          <p>
+            Begins the boot process, initializes the ELE workspace,
+            and places the session under Kernel governance.
+          </p>
+        </article>
+
+        <article class="command-card orientation">
+          <div class="command">Enter ELI</div>
+          <h3>Return to orientation</h3>
+          <p>
+            Reopens the interface used to identify the operator,
+            define the situation, expose uncertainty, and prepare the condition for movement.
+          </p>
+        </article>
+
+        <article class="command-card emergency">
+          <div class="command">Enter ELE</div>
+          <h3>Engage Emergency Logic</h3>
+          <p>
+            Directs the session toward procedural compression:
+            condition, ownership, bottlenecks, minimums, and the next valid movement.
+          </p>
+        </article>
+
+        <article class="command-card source">
+          <div class="command">Exit ELE / Enter Source</div>
+          <h3>Return to General AI</h3>
+          <p>
+            Leaves Emergency Logic and returns the conversation
+            to broad reasoning, exploration, drafting, and normal discussion.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="operating-sequence">
+      <div class="eyebrow">Operating Sequence</div>
+      <h2>Source to ELI to ELE—and back.</h2>
+
+      <div class="flow" aria-label="ELE operating sequence">
+        <div class="flow-node">SOURCE<br><small>General AI</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">ELI<br><small>Identity + Situation</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">ELE<br><small>Emergency Logic</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">SOURCE<br><small>Exit ELE</small></div>
+      </div>
+
+      <div class="notice">
+        <strong>ELI is the orientation interface.</strong>
+        ELE is the operational mode. Source is the underlying General AI environment.
+        The operator may move between these states as the condition changes.
+      </div>
+    </section>
+
+    <section id="uno">
+      <div class="uno-header">
+        <div>
+          <div class="eyebrow">UNO</div>
+          <h2>Maximum emergency compression.</h2>
+
+          <p>
+            UNO is a single-shot system for conditions where time is collapsing
+            and consequence is near. Its objective is mitigation, not deliberation.
+          </p>
+        </div>
+
+        <div class="uno-ask">
+          <strong>UNO asks</strong>
+          <p>
+            If maximum emergency measures were applied right now,
+            what is the process?
+          </p>
+        </div>
+      </div>
+
+      <div class="visual-panel">
+        <img
+          src="ele-controls-uno.png"
+          alt="UNO maximum emergency compression diagram showing immediate levers, consequence, and mitigation"
+        >
+      </div>
+
+      <div class="uno-grid">
+        <article class="uno-card">
+          <strong>Single-shot system</strong>
+          <p>
+            UNO does not explore the full field. It compresses the environment
+            toward immediate movement.
+          </p>
+        </article>
+
+        <article class="uno-card">
+          <strong>Mitigation over deliberation</strong>
+          <p>
+            The system seeks the fastest pathway toward stabilization rather than
+            extending discussion.
+          </p>
+        </article>
+
+        <article class="uno-card">
+          <strong>Consequence is assumed</strong>
+          <p>
+            Time determines where, when, and how severe the consequence becomes.
+          </p>
+        </article>
+
+        <article class="uno-card">
+          <strong>Immediate levers</strong>
+          <p>
+            UNO exposes the closest available controls, removes tolerances,
+            and accelerates movement toward mitigation.
+          </p>
+        </article>
+      </div>
+
+      <div class="return-list" aria-label="UNO return priorities">
+        <div class="return-item">Opposition</div>
+        <div class="return-item">Aggressive Route</div>
+        <div class="return-item">Nearest Lever</div>
+        <div class="return-item">Tolerance Elimination</div>
+        <div class="return-item">Mitigation Priority</div>
+      </div>
+
+      <div class="notice">
+        <strong>UNO is not the default operating mode.</strong>
+        It is reserved for conditions where time is of the essence,
+        consequence is imminent, and the operator needs maximum procedural compression.
+      </div>
+    </section>
+
+    <section id="support">
+      <div class="support-box">
+        <div class="eyebrow">Project Support</div>
+        <h2>Contact, support, and subscribe.</h2>
+
+        <p>
+          Support helps preserve the public archive, maintain distribution,
+          continue testing, and develop the next release.
+        </p>
+
+        <a class="button" href="support.html">
+          Open Support and Contact
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>Emergency Logic Engine Beta</div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="controls.html">Controls</a>
+        <a href="support.html#support">Support</a>
+        <a href="support.html#subscribe">Subscribe</a>
+        <a href="support.html#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
